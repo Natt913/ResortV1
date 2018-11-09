@@ -1,4 +1,4 @@
-package sample;
+package resortoperation;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,14 +6,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("FloorChart.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FoodService.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("managerHome.fxml"));
+
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1280, 800));
         primaryStage.show();
+        primaryStage.setResizable(false);
+
+
+
     }
 
 
