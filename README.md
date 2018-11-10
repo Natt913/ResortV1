@@ -33,7 +33,7 @@ You can try to log in as each cathegory of users. Simply use these strings as a 
 ## Built With
 
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/) - IDE of choice
-* [SceneBuilder](https://gluonhq.com/products/scene-builder) - Great software to create GUI screens
+* [SceneBuilder](https://gluonhq.com/products/scene-builder) - Great software to create GUI screens with ease
 
 ## Plugins Used
 * [FindBugs](http://findbugs.sourceforge.net/)
