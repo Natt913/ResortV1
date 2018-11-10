@@ -1,5 +1,6 @@
 # Resort Project
 You are the owners of an up-and-coming resort. Business is booming, and you need a system that will automate your booking process. It will have a user-friendly interface for prospective guests, where they can enter dates, type of room, etc. for their stay as well as payment information. Your system shall produce summry report views for a manager and handle special cases such as cancellation or being sold out.
+
 Upon further discussion with Dr. Koufakou, the project is shifted more onto a system management instead of booking . Guest reservations will come from an outside service (such as Kayak, Booking.com, etc.)
 
 The programming language used is **Java**.
