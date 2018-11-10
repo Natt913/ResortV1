@@ -22,7 +22,7 @@ Screens from Group1 and ResortProject repositories combined and modiefied to be 
 - Fixed paths in files (now all relative!). 
 - Fixed naming issues.
 
-## LOGIN TEST
+## Login Test
 You can try to log in as each cathegory of users. Simply use these strings as a username:
 - guest
 - manager
@@ -30,6 +30,8 @@ You can try to log in as each cathegory of users. Simply use these strings as a 
 - maintenance
 - valet
 
+## Future Updates
+- Randomize background picture for screens
 
 ## Built With
 
