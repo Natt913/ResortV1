@@ -1,5 +1,3 @@
-package resortoperation;
-
 import org.joda.time.DateTime;
 
 import java.sql.*;
@@ -58,13 +56,17 @@ public class User {
         this.userPIN = userPIN;
         this.isEmployee = rs.getInt(4);
         this.userStatus = rs.getString(5);
-        this.guestRoomNumber = rs.getInt(6);
-        this.empType = rs.getInt(7);
+        this.guestRoomNumber = rs.getInt(7);
+        this.empType = rs.getInt(8);
         this.authenticated = true;
         // set all object fields now
         System.out.println("Authenticated");
         System.out.println("name = " + this.userName);
         System.out.println("id = " + this.userID);
+        System.out.println("isEmployee = " + this.isEmployee);
+        System.out.println("userStatus = " + this.userStatus);
+        System.out.println("guestRoomNumber = " + this.guestRoomNumber);
+        System.out.println("empType = " + this.empType);
       }
       if (resultCount == 0) {
         System.out.println("No results found with those login credentials");
@@ -187,5 +189,12 @@ public class User {
 
   public boolean getAuthStatus() {
     return this.authenticated;
+  }
+
+  public int isEmployee() {
+    return this.isEmployee;
+  }
+  public int getEmpType() {
+    return this.empType;
   }
 }

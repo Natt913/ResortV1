@@ -23,15 +23,30 @@ Screens from Group1 and ResortProject repositories combined and modiefied to be 
 - Fixed naming issues.
 
 ## Login Test
-You can try to log in as each cathegory of users. Simply use these strings as a username:
-- guest
-- manager
-- housekeeping
-- maintenance
-- valet
+You can try to log in as each category of users. Simply use ~~these strings as a username~~ a userName and userPIN from the table below:
+-~~ guest~~
+-~~ manager~~
+-~~ housekeeping~~
+-~~ maintenance~~
+-~~ valet~~
+userID|userPIN|userName|isEmployee|userStatus|userCreated|guestRoomNumber|empType
+1003|1234|nathaliec|1|active|2018-11-10T15:39:15.371-05:00||1
+1004|1234|tylerm|1|active|2018-11-10T16:43:11.425-05:00|0|1
+1006|1111|asmith|0|active|2018-11-10T16:48:14.191-05:00|13|0
+1007|9876|swallace|0|active|2018-11-10T16:52:05.069-05:00|10|0
+1008|1248|phil|1|active|2018-11-10T19:07:16.089-05:00|0|2
+1009|1684|wyattb|1|active|2018-11-10T19:09:45.875-05:00|0|1
+1010|1917|alsus|1|active|2018-11-10T19:40:17.782-05:00|0|1
+1011|1215|lucam|1|active|2018-11-10T19:40:17.950-05:00|0|3
 
-## Future Updates
-- Randomize background picture for screens
+##TODO:
+- [ ] Randomize background picture for screens
+- [*] Database Integration
+- [*] Exception throwing/catching to handle user authentication
+- [ ] Add fields for guest user data(credit card number, email address, etc.) either to Users table or set up a join
+- [ ] Integrate model code with view/controller code
+- [ ] Checking existing database records to prevent duplicate record insertion
+
 
 ## Built With
 

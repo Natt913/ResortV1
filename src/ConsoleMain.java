@@ -1,5 +1,3 @@
-package resortoperation;
-
 import java.util.Scanner;
 
 public class ConsoleMain {
@@ -10,10 +8,10 @@ public class ConsoleMain {
 //    newGuest1.insertUserInDB();
 
     //create new employee user and insert into database
-    User newEmp1 = new User("alsus", 1917,1,3,"active");
-    newEmp1.insertUserInDB();
-    User newEmp2 = new User("lucam", 1215,1,3,"active");
-    newEmp2.insertUserInDB();
+//    User newEmp1 = new User("alsus", 1917,1,3,"active");
+//    newEmp1.insertUserInDB();
+//    newEmp2 = new User("lucam", 1215,1,3,"active");
+//    newEmp2.insertUserInDB();
 
 
     //instantiate user for authentication and check against database

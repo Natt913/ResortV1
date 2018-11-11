@@ -16,39 +16,61 @@ public class LoginController {
   public TextField userName;
   public PasswordField password;
   public Button buttonLogin;
+  public User currentUser;
 
   public String getUserName() {
-    return userName.getText();
+    System.out.println("getUserName");
+//    return userName.getText();
+    return "testReturnGetUserName";
   }
 
   public String getPassword() {
-    return userName.getText();
+    System.out.println("getPassword");
+//    return userName.getText();
+    return "testReturnGetUserPassword";
   }
 
   public void login(ActionEvent actionEvent) {
-    if(userName.getText().equals("manager")) {
-      Main.setPane(SCREENS.MANAGERHOME.getValue());
+    String userNameInput = userName.getText();
+    boolean authenticated = false;
+    int userPINInput = Integer.parseInt(password.getText());
+    try {
+      currentUser = new User(userNameInput, userPINInput);
+      authenticated = currentUser.getAuthStatus();
     }
-    else if(userName.getText().equals("housekeeping")){
-      Main.setPane(SCREENS.HOUSEKEEPING.getValue());
-    }
-    else if(userName.getText().equals("maintenance")){
-      Main.setPane(SCREENS.MAINTENANCE.getValue());
-    }
-    else if(userName.getText().equals("valet")){
-      Main.setPane(SCREENS.VALET.getValue());
-    }
-    //this will be replaced with username and pw from db query
-    else if(userName.getText().equals("guest")){
-      Main.setPane(SCREENS.GUESTHOME.getValue());
-    }
-    else{
+    catch(Exception e) {
+      password.clear();
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("Error!");
       alert.setHeaderText(null);
       alert.setContentText("Wrong username or password!");
 
       alert.showAndWait();
+    }
+
+    if (authenticated) {
+      if(currentUser.isEmployee() == 1) {
+        int empTypeIndex = currentUser.getEmpType();
+        System.out.println(empTypeIndex);
+        System.out.println("Logged in as employee type: " + EMPTYPES.getEmpTypeByIndex(empTypeIndex));
+        switch(empTypeIndex) {
+          case 1: //Manager
+            Main.setPane(SCREENS.MANAGERHOME.getValue());
+            break;
+          case 2: //Housekeeping
+            Main.setPane(SCREENS.HOUSEKEEPING.getValue());
+            break;
+          case 3:
+            Main.setPane(SCREENS.MAINTENANCE.getValue());
+            break;
+          case 4:
+            Main.setPane(SCREENS.VALET.getValue());
+            break;
+        }
+      }
+      else {
+        Main.setPane(SCREENS.GUESTHOME.getValue());
+      }
     }
   }
 }
