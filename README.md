@@ -24,13 +24,13 @@ Screens from Group1 and ResortProject repositories combined and modiefied to be 
 
 ## Login Test
 You can try to log in as each category of users. Simply use ~~these strings as a username~~ a userName and userPIN from the table below:
--~~guest~~
--~~manager~~
--~~housekeeping~~
--~~maintenance~~
--~~valet~~
+-~~guest~~<br>
+-~~manager~~<br>
+-~~housekeeping~~<br>
+-~~maintenance~~<br>
+-~~valet~~<br>
 userID|userPIN|userName|isEmployee|userStatus|userCreated|guestRoomNumber|empType
----------------------------------------------------------------------------------
+------|-------|--------|----------|----------|-----------|---------------|-------
 1003|1234|nathaliec|1|active|2018-11-10T15:39:15.371-05:00||1
 1004|1234|tylerm|1|active|2018-11-10T16:43:11.425-05:00|0|1
 1006|1111|asmith|0|active|2018-11-10T16:48:14.191-05:00|13|0
