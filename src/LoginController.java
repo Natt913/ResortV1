@@ -31,10 +31,10 @@ public class LoginController {
   }
 
   public void login(ActionEvent actionEvent) {
-    String userNameInput = userName.getText();
     boolean authenticated = false;
-    int userPINInput = Integer.parseInt(password.getText());
     try {
+      String userNameInput = userName.getText();
+      int userPINInput = Integer.parseInt(password.getText());
       currentUser = new User(userNameInput, userPINInput);
       authenticated = currentUser.getAuthStatus();
     }
