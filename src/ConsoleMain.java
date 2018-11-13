@@ -8,8 +8,8 @@ public class ConsoleMain {
 //    newGuest1.insertUserInDB();
 
     //create new employee user and insert into database
-//    User newEmp1 = new User("alsus", 1917,1,3,"active");
-//    newEmp1.insertUserInDB();
+    User newEmp1 = new User("wyattother", 111111,1,2,"active");
+    newEmp1.insertUserInDB();
 //    newEmp2 = new User("lucam", 1215,1,3,"active");
 //    newEmp2.insertUserInDB();
 
