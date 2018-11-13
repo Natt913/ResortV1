@@ -32,6 +32,8 @@ public class Main extends Application {
         grid.add(FXMLLoader.load(Main.class.getResource("housekeepingRequest.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("foodService.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("concierge.fxml")));
+        grid.add(FXMLLoader.load(Main.class.getResource("foodServicesView.fxml")));
+
 
         root.getChildren().add(grid.get(SCREENS.LOGIN.getValue()));
 

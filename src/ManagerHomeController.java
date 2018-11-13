@@ -1,11 +1,7 @@
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 public class ManagerHomeController {
 
@@ -13,6 +9,7 @@ public class ManagerHomeController {
   public Button buttonFloorChart;
   public Button buttonAllRequests;
   public Button buttonEmployees;
+  public Button viewFoodServices;
 
   //these are request radio buttons - they suppose to disappear when req is done
   public CheckBox radio1;
@@ -21,6 +18,7 @@ public class ManagerHomeController {
   public CheckBox radio4;
   //when this button is clicked - radio disappears
   public Button buttonDone;
+
 
 
   //brings to create new guest account screen
@@ -39,6 +37,13 @@ public class ManagerHomeController {
 
   public void viewAllEmployees(ActionEvent actionEvent) {
     Main.setPane(SCREENS.EMPLOYEELIST.getValue());
+  }
+
+  public void viewFoodServicesEmp(ActionEvent actionEvent) {
+    Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
+  }
+  public void viewValetEmp(MouseEvent actionEvent) {
+    Main.setPane(SCREENS.VALETVIEW.getValue());
   }
 
   public void RequestIsDone(ActionEvent actionEvent) {
