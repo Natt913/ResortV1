@@ -36,7 +36,7 @@
          <left>
             <AnchorPane opacity="0.78" prefHeight="771.0" prefWidth="366.0" style="-fx-background-color: #979A9A;" BorderPane.alignment="CENTER">
                <children>
-                  <VBox layoutX="32.0" layoutY="160.0" prefHeight="547.0" prefWidth="302.0">
+                  <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" onDragDetected="#viewValetEmp" prefHeight="547.0" prefWidth="302.0">
                      <children>
                         <Button fx:id="buttonNewGuestAccount" mnemonicParsing="false" onAction="#buttonNewGuestAccount" prefHeight="47.0" prefWidth="302.0" text="Create New Guest account">
                            <font>
@@ -70,7 +70,18 @@
                               <Insets bottom="20.0" top="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Button layoutX="10.0" layoutY="191.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="302.0" text="Example..                          " textAlignment="CENTER">
+
+
+
+                        <Button fx:id="viewFoodServices" ellipsisString="" layoutX="10.0" layoutY="191.0" mnemonicParsing="false" onAction="#viewFoodServicesEmp" prefHeight="47.0" prefWidth="302.0" text="View Food Services                   ">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="viewFoodServices1" ellipsisString="" layoutX="10.0" layoutY="378.0" mnemonicParsing="false" onAction="#viewFoodServicesEmp" prefHeight="47.0" prefWidth="302.0" text="View Valet Services                 ">
                            <font>
                               <Font size="21.0" />
                            </font>

@@ -30,4 +30,5 @@ public class GuestHomeController {
   public void getConciergeServices(ActionEvent actionEvent) {
     Main.setPane(SCREENS.CONCIERGE.getValue());
   }
+
 }
