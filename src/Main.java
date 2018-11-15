@@ -35,7 +35,6 @@ public class Main extends Application {
 
         root.getChildren().add(grid.get(SCREENS.LOGIN.getValue()));
 
-
         Scene scene = new Scene(root, 1280,800);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
