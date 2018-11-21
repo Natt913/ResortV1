@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateNewGuestAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CreateNewGuestAccountController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1280.0" opacity="0.49" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -30,66 +31,70 @@
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="Birthday" layoutX="14.0" layoutY="166.0" prefHeight="38.0" prefWidth="257.0" promptText="Birthday">
+            <TextField fx:id="emailField" layoutX="14.0" layoutY="166.0" prefHeight="38.0" prefWidth="257.0" promptText="Email">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="Address" layoutX="14.0" layoutY="222.0" prefHeight="38.0" prefWidth="257.0" promptText="Address">
+            <TextField fx:id="pinField" layoutX="14.0" layoutY="222.0" prefHeight="38.0" prefWidth="257.0" promptText="PIN">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="email" layoutX="14.0" layoutY="277.0" prefHeight="38.0" prefWidth="257.0" promptText="Email">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="phoneNumber" layoutX="14.0" layoutY="334.0" prefHeight="38.0" prefWidth="257.0" promptText="Phone Number">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </TextField>
-            <RadioButton fx:id="isMale" layoutX="39.0" layoutY="398.0" mnemonicParsing="false" text="Male">
+
+            <fx:define>
+               <ToggleGroup fx:id="empGuestRadio"/>
+            </fx:define>
+            <RadioButton fx:id="radEmployee" text="Employee" toggleGroup="$empGuestRadio" layoutX="39.0" layoutY="286.0" mnemonicParsing="false">
                <font>
                   <Font size="20.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="isFemale" layoutX="39.0" layoutY="436.0" mnemonicParsing="false" text="Female">
+            <RadioButton fx:id="radGuest" text="Guest" toggleGroup="$empGuestRadio" layoutX="39.0" layoutY="324.0" mnemonicParsing="false">
                <font>
                   <Font size="20.0" />
                </font>
             </RadioButton>
+            <TextField fx:id="empTypeField" layoutX="14.0" layoutY="376.0" prefHeight="38.0" prefWidth="257.0" promptText="Employee Type">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="roomNumField" layoutX="14.0" layoutY="433.0" prefHeight="38.0" prefWidth="257.0" promptText="Room Number">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
          </children>
       </Pane>
       <Pane layoutX="636.0" layoutY="206.0" prefHeight="510.0" prefWidth="342.0">
          <children>
-            <TextField fx:id="nameOnCard" layoutX="14.0" layoutY="112.0" prefHeight="38.0" prefWidth="257.0" promptText="Name On Card">
+            <TextField disable="true" fx:id="nameOnCard" layoutX="14.0" layoutY="112.0" prefHeight="38.0" prefWidth="257.0" promptText="Name On Card">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="securityCode" layoutX="14.0" layoutY="166.0" prefHeight="38.0" prefWidth="257.0" promptText="Security code">
+            <TextField disable="true" fx:id="securityCode" layoutX="14.0" layoutY="166.0" prefHeight="38.0" prefWidth="257.0" promptText="Security code">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="billingAddress" layoutX="14.0" layoutY="222.0" prefHeight="38.0" prefWidth="257.0" promptText="Billing Address">
+            <TextField disable="true" fx:id="billingAddress" layoutX="14.0" layoutY="222.0" prefHeight="38.0" prefWidth="257.0" promptText="Billing Address">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <TextField fx:id="username" layoutX="14.0" layoutY="277.0" prefHeight="38.0" prefWidth="257.0" promptText="Username">
+            <TextField disable="true" fx:id="username" layoutX="14.0" layoutY="277.0" prefHeight="38.0" prefWidth="257.0" promptText="Username">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="password" layoutX="14.0" layoutY="330.0" prefHeight="40.0" prefWidth="257.0" promptText="Password">
+            <PasswordField disable="true" fx:id="password" layoutX="14.0" layoutY="330.0" prefHeight="40.0" prefWidth="257.0" promptText="Password">
                <font>
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <PasswordField fx:id="creditCard" layoutX="14.0" layoutY="53.0" prefHeight="40.0" prefWidth="257.0" promptText="Card Number">
+            <PasswordField disable="true" fx:id="creditCard" layoutX="14.0" layoutY="53.0" prefHeight="40.0" prefWidth="257.0" promptText="Card Number">
                <font>
                   <Font size="20.0" />
                </font>
@@ -103,7 +108,7 @@
       </Pane>
       <Pane layoutX="123.0" layoutY="31.0" prefHeight="175.0" prefWidth="975.0">
          <children>
-            <Text layoutX="46.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Guest Account" textAlignment="CENTER" wrappingWidth="865.46875">
+            <Text layoutX="46.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Account" textAlignment="CENTER" wrappingWidth="865.46875">
                <font>
                   <Font size="54.0" />
                </font>
@@ -115,11 +120,10 @@
             </ImageView>
          </children>
       </Pane>
-      <MenuButton fx:id="buttonHome" layoutY="1.0" mnemonicParsing="false" onAction="#takeHome" text="Home">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
+      <ImageView fx:id="backButton" fitHeight="94.0" fitWidth="83.0" layoutX="24.0" layoutY="693.0" onMouseClicked="#getBackHome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@resources/back_button.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

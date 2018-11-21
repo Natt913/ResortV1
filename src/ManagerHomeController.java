@@ -5,7 +5,7 @@ import javafx.scene.input.MouseEvent;
 
 public class ManagerHomeController {
 
-  public Button buttonNewGuestAccount;
+  public Button buttonNewAccount;
   public Button buttonFloorChart;
   public Button buttonAllRequests;
   public Button buttonEmployees;
@@ -22,7 +22,7 @@ public class ManagerHomeController {
 
 
   //brings to create new guest account screen
-  public void buttonNewGuestAccount(ActionEvent actionEvent) {
+  public void buttonNewAccount(ActionEvent actionEvent) {
     Main.setPane(SCREENS.CREATENEWGUEST.getValue());
   }
 

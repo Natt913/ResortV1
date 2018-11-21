@@ -41,6 +41,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
+        setPane(SCREENS.MANAGERHOME.getValue());
       }
       catch(Exception e){
         e.printStackTrace();
