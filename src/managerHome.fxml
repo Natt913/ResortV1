@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <!--TODO: Figure out proper way to align the text on the buttons(TextAlign=LEFT) not working.-->
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerHomeController">
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerHomeController">
    <children>
       <ImageView fitHeight="800.0" fitWidth="1280.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -23,7 +30,7 @@
                <menus>
                   <Menu mnemonicParsing="false" text="My Account">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" text="Logout" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
@@ -55,7 +62,7 @@
                               <Insets bottom="20.0" top="20.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="buttonAllRequests" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests" VBox.vgrow="ALWAYS" textAlignment="LEFT">
+                        <Button fx:id="buttonAllRequests" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests" textAlignment="LEFT" VBox.vgrow="ALWAYS">
                            <font>
                               <Font size="21.0" />
                            </font>

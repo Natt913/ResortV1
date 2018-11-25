@@ -25,11 +25,16 @@ public class FoodServicesControllerView {
   public ImageView backButton;
 
   public void goBackHome(MouseEvent mouseEvent) {
+    Main.setPane(SCREENS.MANAGERHOME.getValue());
   }
 
   public void getRoomNumber(MouseEvent mouseEvent) {
   }
 
   public void markAsReady(ActionEvent actionEvent) {
+  }
+
+  public void logOut(){
+    Main.setPane(SCREENS.LOGIN.getValue());
   }
 }

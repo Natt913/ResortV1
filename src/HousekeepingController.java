@@ -26,4 +26,8 @@ public class HousekeepingController {
 
   public void getInforoom103(MouseEvent mouseEvent) {
   }
+
+  public void logOut(){
+    Main.setPane(SCREENS.LOGIN.getValue());
+  }
 }
