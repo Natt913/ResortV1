@@ -1,13 +1,20 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.joda.time.DateTime;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Observable;
 
 public class User {
   private int userID;
   private int userPIN;
   private int isEmployee;
   private int empType;
-  private String userName;
+  public String userName;
+  public String userFirstName;
+  public String userLastName;
+  public String userEmail;
   private String userStatus;
   private Date userCreated;
   private int guestRoomNumber;
@@ -15,8 +22,9 @@ public class User {
   static Connection databaseConnection = null;
 
   // Employee constructor
-  public User(String userName, int userPIN, int isEmployee, int empType,
+  public User(int userID, String userName, int userPIN, int isEmployee, int empType,
               String userStatus) {
+    this.userID = userID;
     this.userName = userName;
     this.userPIN = userPIN;
     this.isEmployee = isEmployee;
@@ -26,8 +34,25 @@ public class User {
     System.out.println("User instantiated with employee field values");
   }
 
-  // Guest constructor
-  public User(String userName, int userPIN, int guestRoomNumber, String userStatus) {
+  // Employee Constructor New
+  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, int userPIN,
+              int isEmployee, int empType, String userStatus) {
+    this.userID = userID;
+    this.userName = userName;
+    this.userFirstName = userFirstName;
+    this.userLastName = userLastName;
+    this.userEmail = userEmail;
+    this.userPIN = userPIN;
+    this.isEmployee = isEmployee;
+    this.empType = empType;
+    this.userStatus = userStatus;
+    this.guestRoomNumber = 0;
+    System.out.println("User instantiated with employee field values");
+  }
+
+  // Guest Constructor
+  public User(int userID, String userName, int userPIN, int guestRoomNumber, String userStatus) {
+    this.userID = userID;
     this.userName = userName;
     this.userPIN = userPIN;
     this.isEmployee = 0;
@@ -35,6 +60,22 @@ public class User {
     this.userStatus = userStatus;
     System.out.println("User instantiated with guest field values");
   }
+
+  // Guest Constructor New
+  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, int userPIN,
+              int guestRoomNumber, String userStatus) {
+    this.userID = userID;
+    this.userName = userName;
+    this.userFirstName = userFirstName;
+    this.userLastName = userLastName;
+    this.userEmail = userEmail;
+    this.userPIN = userPIN;
+    this.isEmployee = 0;
+    this.guestRoomNumber = guestRoomNumber;
+    this.userStatus = userStatus;
+    System.out.println("User instantiated with guest field values");
+  }
+
 
   // Authentication Constructor
   public User(String userName, int userPIN) throws Exception {
@@ -92,10 +133,6 @@ public class User {
         System.err.println(e.getMessage());
       }
     }
-
-
-
-
   }
 
   public static Connection establishDBConnection() {
@@ -111,47 +148,45 @@ public class User {
   }
 
 
-  public void insertUserInDB() {
+  public boolean insertUserInDB() {
     databaseConnection = establishDBConnection();
-    try
-    {
+    int insertResult = 0;
+    try {
       Statement statement = databaseConnection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
       DateTime dt2 = new DateTime();
-      // Code used to format DateTime, not used before db insert, but will be used elsewhere
-//      DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd, HH:mm:ss");
-//      String dateStr = dt.toString(fmt);
 
-      // Code to use java.sql.Date for timestamps; not currently used as I switched to joda DateTime
-//      long millis=System.currentTimeMillis();
-//      Date date=new Date(millis);
-//      DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//      String formattedDate = dateFormat.format(date);
-
-      statement.executeUpdate("insert into Users (userPIN, userName, isEmployee, userStatus, userCreated,"
-              + " guestRoomNumber, empType) VALUES (" + userPIN + ",'" + userName + "', " + isEmployee + ",'" + userStatus + "','"
+      insertResult = statement.executeUpdate("insert into Users (userPIN, userName, userFirstName, userLastName, userEmail, isEmployee, userStatus, userCreated,"
+              + " guestRoomNumber, empType) VALUES (" + userPIN + ",'" + userName + "', '" + userFirstName + "', '" + userLastName + "', " + userEmail + "', " + isEmployee + ",'" + userStatus + "','"
               + dt2 + "'," + guestRoomNumber + "," + empType + ")");
-    }
-    catch(SQLException e)
-    {
+    } catch (SQLException e) {
       System.err.println(e.getMessage());
-    }
-    finally {
-      try
-      {
-        if(databaseConnection != null)
+    } finally {
+      try {
+        if (databaseConnection != null)
           databaseConnection.close();
-      }
-      catch(SQLException e)
-      {
+      } catch (SQLException e) {
         System.err.println(e.getMessage());
       }
     }
+    System.out.println("Insert Result " + insertResult);
+    if (insertResult == 1) return true;
+    return false;
   }
 
 
-  public static void printUserList() {
+  public static ObservableList<User> getUserList(int empTypeFilter) {
+    ObservableList<User> returnUserList = FXCollections.observableArrayList();
+    if (empTypeFilter == 1) {
+      String empTypeQ = "where empType = 1";
+    }
+    else if (empTypeFilter == 0) {
+      String empTypeQ = "where empType = 0";
+    }
+    else {
+      String empTypeQ = "";
+    }
     try
     {
       databaseConnection = establishDBConnection();
@@ -159,12 +194,37 @@ public class User {
       Statement statement = databaseConnection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-      ResultSet rs = statement.executeQuery("select * from Users");
+      ResultSet rs = statement.executeQuery("select * from Users where isEmployee = " + empTypeFilter );
       while(rs.next())
       {
-        // read the result set
-        System.out.println("name = " + rs.getString("userName"));
-        System.out.println("id = " + rs.getInt("userID"));
+        // read the result set and instantiate an object for each user
+        User tempUser;
+        // Use employee constructor if user is an employee
+        if (rs.getInt("isEmployee") == 1) {
+          tempUser = new User(
+                  rs.getInt("userID"),
+                  rs.getString("userName"),
+                  rs.getString("userFirstName"),
+                  rs.getString("userLastName"),
+                  rs.getString("userEmail"),
+                  rs.getInt("userPIN"),
+                  rs.getInt("isEmployee"),
+                  rs.getInt("empType"),
+                  rs.getString("userStatus"));
+        }
+        // Use guest constructor if user is an guest
+        else {
+          tempUser = new User(
+                  rs.getInt("userID"),
+                  rs.getString("userName"),
+                  rs.getString("userFirstName"),
+                  rs.getString("userLastName"),
+                  rs.getString("userEmail"),
+                  rs.getInt("userPIN"),
+                  rs.getInt("guestRoomNumber"),
+                  rs.getString("userStatus"));
+        }
+        returnUserList.add(tempUser);
       }
     }
     catch(SQLException e)
@@ -185,6 +245,7 @@ public class User {
         System.err.println(e.getMessage());
       }
     }
+    return returnUserList;
   }
 
   public boolean getAuthStatus() {
@@ -196,5 +257,20 @@ public class User {
   }
   public int getEmpType() {
     return this.empType;
+  }
+  public int getUserID() {
+    return this.userID;
+  }
+  public String getUserName() {
+    return this.userName;
+  }
+  public String getUserFirstName() {
+    return this.userFirstName;
+  }
+  public String getUserLastName() {
+    return this.userLastName;
+  }
+  public String getUserEmail() {
+    return this.userEmail;
   }
 }

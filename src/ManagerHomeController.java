@@ -1,11 +1,12 @@
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
 
 public class ManagerHomeController {
 
-  public Button buttonNewGuestAccount;
+  public Button buttonNewAccount;
   public Button buttonFloorChart;
   public Button buttonAllRequests;
   public Button buttonEmployees;
@@ -22,7 +23,7 @@ public class ManagerHomeController {
 
 
   //brings to create new guest account screen
-  public void buttonNewGuestAccount(ActionEvent actionEvent) {
+  public void buttonNewAccount(ActionEvent actionEvent) {
     Main.setPane(SCREENS.CREATENEWGUEST.getValue());
   }
 
@@ -37,11 +38,23 @@ public class ManagerHomeController {
 
   public void viewAllEmployees(ActionEvent actionEvent) {
     Main.setPane(SCREENS.EMPLOYEELIST.getValue());
+    // Messing around with loading from FXML at this point in order to fire initialize() method at right time.
+    // This is going to be an all-or-nothing kind of change.
+//
+//    try {
+////      Main.root.getChildren().remove(Main.grid.get(Main.current));
+//      Main.root.getChildren().removeAll(Main.grid);
+//      Main.root.getChildren().add(FXMLLoader.load(Main.class.getResource("employeeList.fxml")));
+//    }
+//    catch (Exception e) {
+//      e.printStackTrace();
+//    }
   }
 
   public void viewFoodServicesEmp(ActionEvent actionEvent) {
     Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
   }
+
   public void viewValetEmp(MouseEvent actionEvent) {
     Main.setPane(SCREENS.VALETVIEW.getValue());
   }

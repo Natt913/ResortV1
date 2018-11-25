@@ -1,3 +1,5 @@
+import javafx.collections.ObservableList;
+
 import java.util.Scanner;
 
 public class ConsoleMain {
@@ -8,8 +10,8 @@ public class ConsoleMain {
 //    newGuest1.insertUserInDB();
 
     //create new employee user and insert into database
-    User newEmp1 = new User("wyattother", 111111,1,2,"active");
-    newEmp1.insertUserInDB();
+//    User newEmp1 = new User("wyattother", 111111,1,2,"active");
+//    newEmp1.insertUserInDB();
 //    newEmp2 = new User("lucam", 1215,1,3,"active");
 //    newEmp2.insertUserInDB();
 
@@ -34,6 +36,12 @@ public class ConsoleMain {
     userInput.close();
 
 
+    ObservableList<User> testEmpList = User.getUserList(2);
+    for (User thisUser: testEmpList) {
+       {
+         System.out.println(thisUser.getUserName());
+       }
+    }
 //    User.printUserList();
   }
 }
