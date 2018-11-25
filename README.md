@@ -45,7 +45,7 @@ index  |empType
 3      |MAINTENANCE
 4      |VALET
 
-##TODO:
+## TODO:
 - [ ] Randomize background picture for screens
 - [x] Database Integration
 - [x] Exception throwing/catching to handle user authentication
@@ -74,4 +74,4 @@ index  |empType
 
 ## License
 
-Coming soon!
+This project is licensed under the GNU General Public License v3.0 - see the LICENSE.md file for details
