@@ -1,3 +1,5 @@
+import javafx.collections.ObservableList;
+
 import java.util.Scanner;
 
 public class ConsoleMain {
@@ -34,6 +36,12 @@ public class ConsoleMain {
     userInput.close();
 
 
+    ObservableList<User> testEmpList = User.getUserList(2);
+    for (User thisUser: testEmpList) {
+       {
+         System.out.println(thisUser.getUserName());
+       }
+    }
 //    User.printUserList();
   }
 }

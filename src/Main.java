@@ -6,13 +6,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+//TODO: Explore difference between preloading ALL fxml files (as here) and loading them as needed. Better performance?
+//TODO:     also maybe able to do more with initialize functions to load database info.
 
 public class Main extends Application {
     static AnchorPane root;
 
     static List<AnchorPane> grid = new ArrayList<AnchorPane>();
 
-    private static int current = 0;
+    public static int current = 0;
 
     @Override
     public void start(Stage primaryStage){
@@ -33,7 +35,8 @@ public class Main extends Application {
         grid.add(FXMLLoader.load(Main.class.getResource("foodService.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("concierge.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("foodServicesView.fxml")));
-
+        grid.add(FXMLLoader.load(Main.class.getResource("valetView.fxml")));
+        grid.add(FXMLLoader.load(Main.class.getResource("EmployeeAccountForm.fxml")));
 
         root.getChildren().add(grid.get(SCREENS.LOGIN.getValue()));
 

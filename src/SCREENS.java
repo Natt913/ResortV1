@@ -14,7 +14,8 @@ public enum SCREENS {
   FOODSERVICE(12),
   CONCIERGE(13),
   FOODSERVICESVIEW(14),
-  VALETVIEW(15);
+  VALETVIEW(15),
+  EMPLOYEEACCOUNTFORM(16);
 
   private final int value;
 

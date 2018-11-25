@@ -25,6 +25,7 @@ public class CreateNewGuestAccountController {
   private int userIsEmployee;
   private int userEmpType;
   private int roomNumber;
+  private boolean insertSuccessful;
 
   @FXML
   public TextField firstName;
@@ -33,7 +34,7 @@ public class CreateNewGuestAccountController {
   @FXML
   private TextField pinField;
   @FXML
-  public TextField Address;
+  public TextField billingAddress;
   @FXML
   public TextField emailField;
   @FXML
@@ -45,38 +46,25 @@ public class CreateNewGuestAccountController {
   @FXML
   public ToggleGroup empGuestRadio;
   @FXML
-  public RadioButton isGuest;
-  @FXML
-  public RadioButton isEmployee;
-  @FXML
   public TextField nameOnCard;
   @FXML
   public TextField securityCode;
-  @FXML
-  public TextField billingAddress;
-  @FXML
-  public TextField username;
-  @FXML
-  public PasswordField password;
   @FXML
   public PasswordField creditCard;
   @FXML
   public Button buttonCreateAccount;
   @FXML
   public ImageView logoHome;
-  @FXML
-  public MenuButton buttonHome;
 
   public String getFirstName(ActionEvent actionEvent) {
     return firstName.getText();
   }
 
   public void CreateAccount(ActionEvent actionEvent){
+    userIsEmployee = 0;
     userFirstName = firstName.getText();
     userLastName = lastName.getText();
     userEmail = emailField.getText();
-    RadioButton selectedRadioButton = (RadioButton) empGuestRadio.getSelectedToggle();
-    System.out.println(selectedRadioButton);
     try {
       userPIN = Integer.parseInt(pinField.getText());
     }
@@ -85,50 +73,29 @@ public class CreateNewGuestAccountController {
     }
     userName = userFirstName.toLowerCase() + userLastName.toLowerCase().charAt(0);
 
-
-    // Use employee constructor and insert statement, maybe go back to one constructor that handles both
-    if (selectedRadioButton.getId().equals("radEmployee")) {
-      userIsEmployee = 1;
-
-      try {
-        userEmpType = Integer.parseInt(empTypeField.getText());
-      }
-      catch (Exception e) {
-        System.out.println("Type mismatch exception. Employee type must be an integer.");
-      }
-
-      User newEmployee = new User(userName, userPIN,userIsEmployee,userEmpType,"active");
-      newEmployee.insertUserInDB();
+    try {
+      roomNumber = Integer.parseInt(roomNumField.getText());
     }
-    // Use employee constructor and insert statement, maybe go back to one constructor that handles both
-    else {
-      userIsEmployee = 0;
-      try {
-        roomNumber = Integer.parseInt(roomNumField.getText());
-      }
-      catch (Exception e) {
-        System.out.println("Type mismatch exception. Room Number must be an integer.");
-      }
-      User newGuest = new User(userName, userPIN,roomNumber,"active");
-      newGuest.insertUserInDB();
+    catch (Exception e) {
+      System.out.println("Type mismatch exception. Room Number must be an integer.");
     }
+    User newGuest = new User(0,userName, userPIN,roomNumber,"active");
+    insertSuccessful = newGuest.insertUserInDB();
 
-    String dialogText = userFirstName + " " + userLastName + " with userName: " + userName;
-    //After DB method returns true
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Success!");
-    alert.setHeaderText(dialogText);
-    alert.setContentText("Account has been created successfully!");
-    alert.showAndWait();
+    if (insertSuccessful) {
+      //After DB method returns true
+      String dialogText = userFirstName + " " + userLastName + " with userName: " + userName;
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Success!");
+      alert.setHeaderText(dialogText);
+      alert.setContentText("Account has been created successfully!");
+      alert.showAndWait();
 
-    Main.setPane(SCREENS.MANAGERHOME.getValue());
+      Main.setPane(SCREENS.MANAGERHOME.getValue());
+    }
   }
 
   public void TakeHome(MouseEvent mouseEvent) {
-    Main.setPane(SCREENS.MANAGERHOME.getValue());
-  }
-
-  public void takeHome(ActionEvent actionEvent) {
     Main.setPane(SCREENS.MANAGERHOME.getValue());
   }
 
