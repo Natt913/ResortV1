@@ -36,7 +36,7 @@ public class Main extends Application {
         grid.add(FXMLLoader.load(Main.class.getResource("concierge.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("foodServicesView.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("valetView.fxml")));
-        grid.add(FXMLLoader.load(Main.class.getResource("EmployeeAccountForm.fxml")));
+        grid.add(FXMLLoader.load(Main.class.getResource("employeeAccountForm.fxml")));
 
         root.getChildren().add(grid.get(SCREENS.LOGIN.getValue()));
 
@@ -44,7 +44,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-//        setPane(SCREENS.MANAGERHOME.getValue());
+        setPane(SCREENS.LOGIN.getValue());
       }
       catch(Exception e){
         e.printStackTrace();

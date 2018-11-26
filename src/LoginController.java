@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-  //these variables have to be private in order for the login to work
+  //keep variables public
   public TextField userName;
   public PasswordField password;
   public Button buttonLogin;
@@ -67,6 +67,8 @@ public class LoginController {
             Main.setPane(SCREENS.VALET.getValue());
             break;
         }
+        userName.clear();
+        password.clear();
       }
       else {
         Main.setPane(SCREENS.GUESTHOME.getValue());

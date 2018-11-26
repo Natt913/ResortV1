@@ -61,4 +61,8 @@ public class ManagerHomeController {
 
   public void RequestIsDone(ActionEvent actionEvent) {
   }
+
+  public void logOut(){
+    Main.setPane(SCREENS.LOGIN.getValue());
+  }
 }
