@@ -26,14 +26,11 @@ Screens from Group1 and ResortProject repositories combined and modiefied to be 
 
 userName | userPIN | isEmployee | empType
 -------- | ------- | ---------- | --------
-nathaliec | 1234 | 1 | 1
 tylerm | 1234 | 1 | 1
-asmith | 1111 | 0 | 0
-swallace | 9876 | 0 | 0
 wyattb | 1684 | 1 | 1
-alsus | 1917 | 1 | 1
+alsus | 2468 | 1 | 1
 lucam | 1215 | 1 | 3
-wyattother | 111111 | 1 | 2
+dickh | 1234 | 0 | 0
 
 Employee Types (stored in EMPTYPES enum, checked by index):
 
