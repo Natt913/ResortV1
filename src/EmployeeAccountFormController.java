@@ -11,6 +11,8 @@ public class EmployeeAccountFormController {
   private String userLastName;
   private String userEmail;
   private String userName;
+  private String userStatus;
+  private String userPhone;
   private int userPIN;
   private int userIsEmployee;
   private int userEmpType;
@@ -35,9 +37,11 @@ public class EmployeeAccountFormController {
 
   public void CreateAccount(ActionEvent actionEvent) {
     userIsEmployee = 1;
+    userStatus = "active";
     userFirstName = firstName.getText();
     userLastName = lastName.getText();
     userEmail = emailField.getText();
+    userPhone = phoneNumberField.getText();
     try {
       userPIN = Integer.parseInt(pinField.getText());
     } catch (Exception e) {
@@ -65,20 +69,22 @@ public class EmployeeAccountFormController {
       alert.showAndWait();
     }
 
-    User newEmployee = new User(0,userName, userPIN, userIsEmployee, userEmpType, "active");
+    User newEmployee = new User(0, userName, userFirstName, userLastName, userEmail, userPhone, userPIN,
+            userIsEmployee, userEmpType, userStatus);
+
     insertSuccessful = newEmployee.insertUserInDB();
 
-    String dialogText = userFirstName + " " + userLastName + " with userName: " + userName;
+    if (insertSuccessful) {
+      String dialogText = userFirstName + " " + userLastName + " with userName: " + userName;
 
-    //After DB method returns true
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Success!");
-    alert.setHeaderText(dialogText);
-    alert.setContentText("Account has been created successfully!");
-    alert.showAndWait();
-
-    Main.setPane(SCREENS.EMPLOYEELIST.getValue());
-    System.out.println("Create Employee User");
+      //After DB method returns true
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("User Created!");
+      alert.setHeaderText("Account has been created successfully!");
+      alert.setContentText(dialogText);
+      alert.showAndWait();
+      Main.setPane(SCREENS.EMPLOYEELIST.getValue());
+    }
   }
 
   public void getBackHome(MouseEvent mouseEvent) {

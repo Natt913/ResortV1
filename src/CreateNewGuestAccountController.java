@@ -20,7 +20,9 @@ public class CreateNewGuestAccountController {
   private String userFirstName;
   private String userLastName;
   private String userEmail;
+  private String userPhone;
   private String userName;
+  private String userStatus;
   private int userPIN;
   private int userIsEmployee;
   private int userEmpType;
@@ -38,7 +40,7 @@ public class CreateNewGuestAccountController {
   @FXML
   public TextField emailField;
   @FXML
-  public TextField phoneNumber;
+  public TextField userPhoneField;
   @FXML
   public TextField roomNumField;
   @FXML
@@ -62,9 +64,11 @@ public class CreateNewGuestAccountController {
 
   public void CreateAccount(ActionEvent actionEvent){
     userIsEmployee = 0;
+    userStatus = "active";
     userFirstName = firstName.getText();
     userLastName = lastName.getText();
     userEmail = emailField.getText();
+    userPhone = userPhoneField.getText();
     try {
       userPIN = Integer.parseInt(pinField.getText());
     }
@@ -79,7 +83,11 @@ public class CreateNewGuestAccountController {
     catch (Exception e) {
       System.out.println("Type mismatch exception. Room Number must be an integer.");
     }
-    User newGuest = new User(0,userName, userPIN,roomNumber,"active");
+//    User newGuest = new User(0,userName, userPIN,roomNumber,"active");
+
+
+    User newGuest = new User(0, userName, userFirstName, userLastName, userEmail, userPhone, userPIN,roomNumber,
+            userStatus);
     insertSuccessful = newGuest.insertUserInDB();
 
     if (insertSuccessful) {
