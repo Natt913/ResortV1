@@ -27,47 +27,61 @@ import java.util.ResourceBundle;
 
 public class EmployeeListController implements Initializable {
   @FXML
-  public TableView employeeTable;
+  public TableView<User> employeeTable;
 
   public void populateEmployeeList() {
-    System.out.println("Populate Table.");
-
     ObservableList<User> currentEmployeeList = User.getUserList(1);
-    System.out.println(currentEmployeeList.get(0).userName);
-
     TableColumn userIDCol = new TableColumn("UserID");
-      userIDCol.setMinWidth(100);
+      userIDCol.setMinWidth(60);
       userIDCol.setCellValueFactory(
               new PropertyValueFactory<User, Integer>("userID"));
 
     TableColumn userNameCol = new TableColumn("UserName");
-      userNameCol.setMinWidth(100);
+      userNameCol.setMinWidth(75);
       userNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userName"));
 
     TableColumn firstNameCol = new TableColumn("FirstName");
-      firstNameCol.setMinWidth(100);
+      firstNameCol.setMinWidth(90);
       firstNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userFirstName"));
 
     TableColumn lastNameCol = new TableColumn("LastName");
-      lastNameCol.setMinWidth(100);
+      lastNameCol.setMinWidth(90);
       lastNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userLastName"));
 
     TableColumn emailCol = new TableColumn("Email");
-      emailCol.setMinWidth(100);
+      emailCol.setMinWidth(220);
       emailCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userEmail"));
 
-//      TODO: Figure out a way to display the employee type from the enum rather than the integer value as taken from db
-    TableColumn employeeTypeCol = new TableColumn("Employee Type");
-        employeeTypeCol.setMinWidth(130);
-        employeeTypeCol.setCellValueFactory(
-                new PropertyValueFactory<User, Integer>("empType"));
+    TableColumn empTypeTextCol = new TableColumn("Employee Type");
+        empTypeTextCol.setMinWidth(110);
+        empTypeTextCol.setCellValueFactory(
+                new PropertyValueFactory<User, String>("empTypeText"));
 
     employeeTable.setItems(currentEmployeeList);
-    employeeTable.getColumns().addAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, employeeTypeCol);
+    employeeTable.getColumns().clear();
+//    employeeTable.getColumns().removeAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, employeeTypeCol);
+    employeeTable.getColumns().addAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, empTypeTextCol);
+  }
+
+  public void deleteUser(ActionEvent actionEvent) {
+    User selectedUser;
+    selectedUser = employeeTable.getSelectionModel().getSelectedItem();
+    if (selectedUser != null) {
+      System.out.println("Delete User" + selectedUser.getUserName());
+      selectedUser.deleteUser();
+      populateEmployeeList();
+    }
+    else {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Error");
+      alert.setHeaderText("User not deleted.");
+      alert.setContentText("Select a user and then click Delete User button.");
+      alert.showAndWait();
+    }
   }
 
   public void getBackHome(MouseEvent mouseEvent) {
@@ -81,5 +95,6 @@ public class EmployeeListController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     System.out.println("Call to initialize function. Populate table.");
+    populateEmployeeList();
   }
 }

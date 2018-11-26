@@ -15,6 +15,8 @@ public class User {
   public String userFirstName;
   public String userLastName;
   public String userEmail;
+  public String userPhone;
+  public String empTypeText;
   private String userStatus;
   private Date userCreated;
   private int guestRoomNumber;
@@ -29,25 +31,28 @@ public class User {
     this.userPIN = userPIN;
     this.isEmployee = isEmployee;
     this.empType = empType;
+    this.empTypeText = EMPTYPES.getEmpTypeByIndex(empType).toString();
     this.userStatus = userStatus;
     this.guestRoomNumber = 0;
     System.out.println("User instantiated with employee field values");
   }
 
   // Employee Constructor New
-  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, int userPIN,
-              int isEmployee, int empType, String userStatus) {
+  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, String userPhone,
+              int userPIN, int isEmployee, int empType, String userStatus) {
     this.userID = userID;
     this.userName = userName;
     this.userFirstName = userFirstName;
     this.userLastName = userLastName;
     this.userEmail = userEmail;
+    this.userPhone = userPhone;
     this.userPIN = userPIN;
     this.isEmployee = isEmployee;
     this.empType = empType;
+    this.empTypeText = EMPTYPES.getEmpTypeByIndex(empType).toString();
     this.userStatus = userStatus;
     this.guestRoomNumber = 0;
-    System.out.println("User instantiated with employee field values");
+    System.out.println("User instantiated with employee type " + empTypeText);
   }
 
   // Guest Constructor
@@ -62,13 +67,14 @@ public class User {
   }
 
   // Guest Constructor New
-  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, int userPIN,
-              int guestRoomNumber, String userStatus) {
+  public User(int userID, String userName, String userFirstName, String userLastName, String userEmail, String userPhone,
+              int userPIN, int guestRoomNumber, String userStatus) {
     this.userID = userID;
     this.userName = userName;
     this.userFirstName = userFirstName;
     this.userLastName = userLastName;
     this.userEmail = userEmail;
+    this.userPhone = userPhone;
     this.userPIN = userPIN;
     this.isEmployee = 0;
     this.guestRoomNumber = guestRoomNumber;
@@ -147,7 +153,6 @@ public class User {
     return null;
   }
 
-
   public boolean insertUserInDB() {
     databaseConnection = establishDBConnection();
     int insertResult = 0;
@@ -157,9 +162,11 @@ public class User {
 
       DateTime dt2 = new DateTime();
 
-      insertResult = statement.executeUpdate("insert into Users (userPIN, userName, userFirstName, userLastName, userEmail, isEmployee, userStatus, userCreated,"
-              + " guestRoomNumber, empType) VALUES (" + userPIN + ",'" + userName + "', '" + userFirstName + "', '" + userLastName + "', " + userEmail + "', " + isEmployee + ",'" + userStatus + "','"
-              + dt2 + "'," + guestRoomNumber + "," + empType + ")");
+      insertResult = statement.executeUpdate("insert into Users (userPIN, userName, userFirstName, userLastName,"
+              + "userEmail, userPhone, isEmployee, userStatus, userCreated, guestRoomNumber, empType) VALUES ("
+              + userPIN + ",'" + userName + "', '" + userFirstName + "', '" + userLastName + "', '" + userEmail + "', '"
+              + userPhone + "', " + isEmployee + ",'" + userStatus + "','" + dt2 + "', " + guestRoomNumber + ", "
+              + empType + ")");
     } catch (SQLException e) {
       System.err.println(e.getMessage());
     } finally {
@@ -175,17 +182,36 @@ public class User {
     return false;
   }
 
+  public void deleteUser() {
+    databaseConnection = establishDBConnection();
+    try {
+      Statement statement = databaseConnection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-  public static ObservableList<User> getUserList(int empTypeFilter) {
-    ObservableList<User> returnUserList = FXCollections.observableArrayList();
-    if (empTypeFilter == 1) {
-      String empTypeQ = "where empType = 1";
+      int deleteResult = statement.executeUpdate("delete from Users where userID = " + this.userID);
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+    } finally {
+      try {
+        if (databaseConnection != null)
+          databaseConnection.close();
+      } catch (SQLException e) {
+        System.err.println(e.getMessage());
+      }
     }
-    else if (empTypeFilter == 0) {
-      String empTypeQ = "where empType = 0";
+  }
+
+  public static ObservableList<User> getUserList(int isEmployeeFilter) {
+    ObservableList<User> returnUserList = FXCollections.observableArrayList();
+    String isEmpFilterQ;
+    if (isEmployeeFilter == 1) {
+      isEmpFilterQ = " where isEmployee = 1";
+    }
+    else if (isEmployeeFilter == 0) {
+      isEmpFilterQ = " where isEmployee = 0";
     }
     else {
-      String empTypeQ = "";
+      isEmpFilterQ = "";
     }
     try
     {
@@ -194,7 +220,7 @@ public class User {
       Statement statement = databaseConnection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-      ResultSet rs = statement.executeQuery("select * from Users where isEmployee = " + empTypeFilter );
+      ResultSet rs = statement.executeQuery("select * from Users" + isEmpFilterQ );
       while(rs.next())
       {
         // read the result set and instantiate an object for each user
@@ -207,6 +233,7 @@ public class User {
                   rs.getString("userFirstName"),
                   rs.getString("userLastName"),
                   rs.getString("userEmail"),
+                  rs.getString("userPhone"),
                   rs.getInt("userPIN"),
                   rs.getInt("isEmployee"),
                   rs.getInt("empType"),
@@ -220,6 +247,7 @@ public class User {
                   rs.getString("userFirstName"),
                   rs.getString("userLastName"),
                   rs.getString("userEmail"),
+                  rs.getString("userPhone"),
                   rs.getInt("userPIN"),
                   rs.getInt("guestRoomNumber"),
                   rs.getString("userStatus"));
@@ -255,9 +283,15 @@ public class User {
   public int isEmployee() {
     return this.isEmployee;
   }
+
   public int getEmpType() {
     return this.empType;
   }
+
+  public String getEmpTypeText() {
+    return empTypeText;
+  }
+
   public int getUserID() {
     return this.userID;
   }
