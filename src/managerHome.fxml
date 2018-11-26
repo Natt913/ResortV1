@@ -2,10 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,90 +14,79 @@
 
 <!--TODO: Figure out proper way to align the text on the buttons(TextAlign=LEFT) not working.-->
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerHomeController">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManagerHomeController">
   <children>
     <ImageView fitHeight="800.0" fitWidth="1280.0" opacity="0.51" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@resources/BeachPalmsDarkenedBlurred.jpg"/>
+        <Image url="@resources/BeachPalmsDarkenedBlurred.jpg" />
       </image>
     </ImageView>
-    <BorderPane prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <BorderPane prefHeight="800.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <top>
       </top>
       <left>
-        <AnchorPane opacity="0.78" prefHeight="771.0" prefWidth="366.0" style="-fx-background-color: #979A9A;"
-                    BorderPane.alignment="CENTER">
+        <AnchorPane opacity="0.78" prefHeight="771.0" prefWidth="366.0" style="-fx-background-color: #979A9A;" BorderPane.alignment="CENTER">
           <children>
-            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" onDragDetected="#viewValetEmp" prefHeight="547.0"
-                  prefWidth="302.0">
+            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" onDragDetected="#viewValetEmp" prefHeight="547.0" prefWidth="302.0">
               <children>
-                <Button fx:id="buttonNewGuestAccount" mnemonicParsing="false" onAction="#buttonNewAccount"
-                        prefHeight="47.0" prefWidth="302.0" text="Create New Account" alignment="BASELINE_LEFT">
+                <Button fx:id="buttonNewGuestAccount" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#buttonNewAccount" prefHeight="47.0" prefWidth="302.0" text="Create New Account">
                   <font>
-                    <Font size="21.0"/>
+                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="buttonFloorChart" cancelButton="true" layoutX="10.0" layoutY="20.0"
-                        mnemonicParsing="false" onAction="#viewFloorChart" prefHeight="47.0" prefWidth="302.0"
-                        text="View Floor Chart" alignment="BASELINE_LEFT">
+                <Button fx:id="buttonFloorChart" alignment="BASELINE_LEFT" cancelButton="true" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#viewFloorChart" prefHeight="47.0" prefWidth="302.0" text="View Floor Chart">
                   <font>
-                    <Font size="22.0"/>
+                    <Font size="22.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="buttonAllRequests" layoutX="10.0" layoutY="87.0" mnemonicParsing="false"
-                        onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests"
-                        alignment="BASELINE_LEFT" VBox.vgrow="ALWAYS">
+                <Button fx:id="buttonAllRequests" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests" VBox.vgrow="ALWAYS">
                   <font>
-                    <Font size="21.0"/>
+                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="buttonEmployees" layoutX="10.0" layoutY="144.0" mnemonicParsing="false"
-                        onAction="#viewAllEmployees" prefHeight="47.0" prefWidth="302.0" text="View Employees"
-                        alignment="BASELINE_LEFT">
+                <Button fx:id="buttonEmployees" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#viewAllEmployees" prefHeight="47.0" prefWidth="302.0" text="View Employees">
                   <font>
-                    <Font size="21.0"/>
+                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="viewFoodServices" ellipsisString="" layoutX="10.0" layoutY="191.0"
-                        mnemonicParsing="false" onAction="#viewFoodServicesEmp" prefHeight="47.0" prefWidth="302.0"
-                        text="View Food Services" alignment="BASELINE_LEFT">
+                <Button fx:id="viewFoodServices" alignment="BASELINE_LEFT" ellipsisString="" layoutX="10.0" layoutY="191.0" mnemonicParsing="false" onAction="#viewFoodServicesEmp" prefHeight="47.0" prefWidth="302.0" text="View Food Services">
                   <font>
-                    <Font size="21.0"/>
+                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="viewValetButton1" ellipsisString="" layoutX="10.0" layoutY="378.0"
-                        mnemonicParsing="false" onAction="#viewValetEmp" prefHeight="47.0" prefWidth="302.0"
-                        text="View Valet Services" alignment="BASELINE_LEFT">
+                <Button fx:id="viewValetButton1" alignment="BASELINE_LEFT" ellipsisString="" layoutX="10.0" layoutY="378.0" mnemonicParsing="false" onAction="#viewValetEmp" prefHeight="47.0" prefWidth="302.0" text="View Valet Services">
                   <font>
-                    <Font size="21.0"/>
+                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
-                    <Insets bottom="20.0" top="20.0"/>
+                    <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
+                        <Button fx:id="reportButton" alignment="BASELINE_LEFT" ellipsisString="" mnemonicParsing="false" onAction="#createReport" prefHeight="47.0" prefWidth="302.0" text="Create Report">
+                           <font>
+                              <Font size="21.0" />
+                           </font>
+                        </Button>
               </children>
             </VBox>
-            <Text layoutX="75.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU"
-                  wrappingWidth="170.4287109375">
+            <Text layoutX="75.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" wrappingWidth="170.4287109375">
               <font>
-                <Font size="47.0"/>
+                <Font size="47.0" />
               </font>
             </Text>
           </children>
@@ -111,58 +97,18 @@
           <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
               <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIVE REQUESTS" textAlignment="CENTER"
-                      wrappingWidth="914.31298828125">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ACTIVE REQUESTS" textAlignment="CENTER" wrappingWidth="914.31298828125">
                   <font>
-                    <Font size="75.0"/>
+                    <Font size="75.0" />
                   </font>
                   <HBox.margin>
-                    <Insets top="30.0"/>
+                    <Insets top="30.0" />
                   </HBox.margin>
                 </Text>
               </children>
             </HBox>
-            <CheckBox fx:id="radio1" mnemonicParsing="false" text="request 1">
-              <font>
-                <Font size="39.0"/>
-              </font>
-              <VBox.margin>
-                <Insets left="30.0" top="50.0"/>
-              </VBox.margin>
-            </CheckBox>
-            <CheckBox fx:id="radio2" layoutX="40.0" layoutY="160.0" mnemonicParsing="false" text="request 2">
-              <font>
-                <Font size="39.0"/>
-              </font>
-              <VBox.margin>
-                <Insets left="30.0" top="30.0"/>
-              </VBox.margin>
-            </CheckBox>
-            <CheckBox fx:id="radio3" layoutX="10.0" layoutY="213.0" mnemonicParsing="false" text="request 3">
-              <font>
-                <Font size="39.0"/>
-              </font>
-              <VBox.margin>
-                <Insets left="30.0" top="30.0"/>
-              </VBox.margin>
-            </CheckBox>
-            <CheckBox fx:id="radio4" layoutX="10.0" layoutY="266.0" mnemonicParsing="false" text="request 4">
-              <font>
-                <Font size="39.0"/>
-              </font>
-              <VBox.margin>
-                <Insets left="30.0" top="30.0"/>
-              </VBox.margin>
-            </CheckBox>
-            <Button fx:id="buttonDone" mnemonicParsing="false" onAction="#RequestIsDone" prefHeight="40.0"
-                    prefWidth="153.0" text="Done">
-              <font>
-                <Font size="24.0"/>
-              </font>
-              <VBox.margin>
-                <Insets left="350.0" top="50.0"/>
-              </VBox.margin>
-            </Button>
+                  <TableView fx:id="allRequestsTable" prefHeight="460.0" prefWidth="915.0" />
+                  <Button fx:id="buttonDone" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RequestIsDone" prefHeight="61.0" prefWidth="131.0" text="Mark as Done" />
           </children>
         </VBox>
       </center>
