@@ -55,7 +55,7 @@ public class ManagerHomeController {
     Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
   }
 
-  public void viewValetEmp(MouseEvent actionEvent) {
+  public void viewValetEmp(ActionEvent actionEvent) {
     Main.setPane(SCREENS.VALETVIEW.getValue());
   }
 

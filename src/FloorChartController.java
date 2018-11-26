@@ -20,6 +20,7 @@ public class FloorChartController {
   private Rectangle room102;
   @FXML
   private Rectangle room103;
+  @FXML
   private Rectangle room101;
   @FXML
   private ImageView logoHome;
