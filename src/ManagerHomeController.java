@@ -1,8 +1,15 @@
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.input.MouseEvent;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import java.io.IOException;
 
 public class ManagerHomeController {
 
@@ -64,5 +71,75 @@ public class ManagerHomeController {
 
   public void logOut(){
     Main.setPane(SCREENS.LOGIN.getValue());
+  }
+
+  public void createReport(){
+    PDDocument document = new PDDocument();
+    PDPage page = new PDPage();
+    document.addPage(page);
+    try {
+      PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+      contentStream.setFont(PDType1Font.HELVETICA_BOLD, 24);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(100,750);
+      contentStream.showText("FGCU Resort - Manager Report");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(20,700);
+      contentStream.showText("# STAFF");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA, 12);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(25,680);
+
+      //has to load from query
+      contentStream.showText("Maintenance: 5");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA, 12);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(25,660);
+      //has to load from query
+      contentStream.showText("Valet: 1");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA, 12);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(25,640);
+      //has to load from query
+      contentStream.showText("Housekeeping: 3");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA, 12);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(25,620);
+      //has to load from query
+      contentStream.showText("Managers: 2");
+      contentStream.endText();
+
+      contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+      contentStream.beginText();
+      contentStream.moveTextPositionByAmount(20,580);
+      //has to load from query
+      contentStream.showText("Reserved Rooms: 10");
+      contentStream.endText();
+
+
+      contentStream.close();
+
+      document.save("./reports/managerReport.pdf");
+      document.close();
+
+      System.out.println("Report created");
+    } catch(IOException e){
+      System.out.println(e.toString());
+    }
+
+
+
   }
 }

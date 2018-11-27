@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ValetController">
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ValetController">
   <children>
     <AnchorPane prefHeight="800.0" prefWidth="1280.0">
       <children>
@@ -191,139 +188,11 @@
             </Text>
           </children>
         </HBox>
-        <Text layoutX="129.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requests by Time">
+        <Text layoutX="126.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requests by Time">
           <font>
             <Font size="31.0" />
           </font>
         </Text>
-        <VBox layoutX="35.0" layoutY="340.0" prefHeight="394.0" prefWidth="114.0" style="-fx-background-color: #E5E8E8;">
-          <children>
-            <TextArea prefHeight="47.0" prefWidth="114.0" text="Room #">
-              <font>
-                <Font size="24.0" />
-              </font>
-            </TextArea>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="100">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text layoutX="10.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="101">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text layoutX="10.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text layoutX="10.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-          </children>
-        </VBox>
-        <VBox layoutX="161.0" layoutY="340.0" prefHeight="394.0" prefWidth="180.0" style="-fx-background-color: #E5E8E8;">
-          <children>
-            <TextArea prefHeight="47.0" prefWidth="114.0" text="Request&#10;">
-              <font>
-                <Font size="24.0" />
-              </font>
-            </TextArea>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Request">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text layoutX="10.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-            <Text layoutX="10.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-              <font>
-                <Font size="29.0" />
-              </font>
-              <VBox.margin>
-                <Insets left="5.0" />
-              </VBox.margin>
-            </Text>
-          </children>
-        </VBox>
-        <VBox layoutX="364.0" layoutY="340.0" prefHeight="394.0" prefWidth="114.0" style="-fx-background-color: #E5E8E8;">
-          <children>
-            <TextArea prefHeight="44.0" prefWidth="114.0" text="Status&#10;">
-              <font>
-                <Font size="24.0" />
-              </font>
-            </TextArea>
-            <SplitMenuButton mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Active">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Active" />
-                <MenuItem mnemonicParsing="false" text="Done" />
-                <MenuItem mnemonicParsing="false" text="Manager Required" />
-              </items>
-              <VBox.margin>
-                <Insets bottom="5.0" />
-              </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton layoutX="10.0" layoutY="57.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Active">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Active" />
-                <MenuItem mnemonicParsing="false" text="Done" />
-                <MenuItem mnemonicParsing="false" text="Manager Required" />
-              </items>
-              <VBox.margin>
-                <Insets bottom="5.0" />
-              </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton layoutX="10.0" layoutY="88.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Active">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Active" />
-                <MenuItem mnemonicParsing="false" text="Done" />
-                <MenuItem mnemonicParsing="false" text="Manager Required" />
-              </items>
-              <VBox.margin>
-                <Insets bottom="5.0" />
-              </VBox.margin>
-            </SplitMenuButton>
-            <SplitMenuButton layoutX="10.0" layoutY="119.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="114.0" text="Active">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Active" />
-                <MenuItem mnemonicParsing="false" text="Done" />
-                <MenuItem mnemonicParsing="false" text="Manager Required" />
-              </items>
-            </SplitMenuButton>
-          </children>
-        </VBox>
             <MenuBar layoutX="17.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Account">
@@ -333,6 +202,12 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <TableView layoutX="61.0" layoutY="277.0" prefHeight="437.0" prefWidth="394.0" />
+            <ImageView fx:id="backButton" fitHeight="72.0" fitWidth="64.0" layoutX="17.0" layoutY="734.0" onMouseClicked="#goBackHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/back_button.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>

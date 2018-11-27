@@ -16,6 +16,7 @@ public class ValetController {
 
   //this is when logo clicked, should take you back home
   public void goBackHome(MouseEvent mouseEvent) {
+    Main.setPane(SCREENS.MANAGERHOME.getValue());
   }
 
   public void getInforoom101(MouseEvent mouseEvent) {
