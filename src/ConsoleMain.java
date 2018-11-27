@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ConsoleMain {
   public static void main(String[] args)
-  {
+  {//
     //create new guest user and insert into database
 //    User newGuest1 = new User("swallace", 9876,10,"active");
 //    newGuest1.insertUserInDB();
