@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FoodServicesControllerView">
+  <children>
+    <AnchorPane prefHeight="800.0" prefWidth="1280.0">
+      <children>
+        <ImageView fitHeight="800.0" fitWidth="1280.0" opacity="0.3" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <image>
+            <Image url="@resources/BeachPalmsDarkenedBlurred.jpg" />
+          </image>
+        </ImageView>
+        <Text layoutX="234.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to FGCU Inn!" textAlignment="CENTER">
+          <font>
+            <Font name="Verdana Bold" size="59.0" />
+          </font>
+          <cursor>
+            <Cursor fx:constant="DEFAULT" />
+          </cursor>
+        </Text>
+        <Text layoutX="356.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Food Services" textAlignment="CENTER">
+          <cursor>
+            <Cursor fx:constant="DEFAULT" />
+          </cursor>
+          <font>
+            <Font name="Verdana Bold" size="59.0" />
+          </font>
+        </Text>
+        <ImageView fx:id="logoHome" fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="47.0" onDragDetected="#goBackHome" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@resources/Logo.gif" />
+          </image>
+        </ImageView>
+            <Button layoutX="1024.0" layoutY="335.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" text="Contact Guest">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="1024.0" layoutY="427.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" text="Contact Manager">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <Button layoutX="1024.0" layoutY="522.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="217.0" text="Contact Front Desc">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="backButton" fitHeight="112.0" fitWidth="134.0" layoutX="30.0" layoutY="648.0" onMouseClicked="#goBackHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/back_button.png" />
+               </image>
+            </ImageView>
+            <MenuBar layoutX="30.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Account">
+                  <items>
+                    <MenuItem fx:id="logoutButton" mnemonicParsing="false" onAction="#logOut" text="Logout" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <TableView fx:id="foodRequests" layoutX="251.0" layoutY="275.0" prefHeight="414.0" prefWidth="645.0" />
+      </children>
+    </AnchorPane>
+  </children>
+</AnchorPane>
