@@ -21,6 +21,8 @@ Screens from Group1 and ResortProject repositories combined and modiefied to be 
 - Fixed minor and major bugs. 
 - Fixed paths in files (now all relative!). 
 - Fixed naming issues.
+- Separated screens from manager view.
+- Added reports functionality.
 
 ## Login Test
 
@@ -31,6 +33,7 @@ wyattb | 1684 | 1 | 1
 alsus | 2468 | 1 | 1
 lucam | 1215 | 1 | 3
 dickh | 1234 | 0 | 0
+food | 1811 | 1 | 5
 
 Employee Types (stored in EMPTYPES enum, checked by index):
 
@@ -41,8 +44,10 @@ index  |empType
 2      |HOUSEKEEPING
 3      |MAINTENANCE
 4      |VALET
+4      |FOOD SERVICES
 
 ## TODO:
+- [ ] Mark report as Done.
 - [ ] Randomize background picture for screens
 - [x] Database Integration
 - [x] Exception throwing/catching to handle user authentication
@@ -56,6 +61,7 @@ index  |empType
 
 * [IntelliJ IDEA](https://www.jetbrains.com/idea/) - IDE of choice
 * [SceneBuilder](https://gluonhq.com/products/scene-builder) - Great software to create GUI screens with ease
+* [Apache PDFBox](https://pdfbox.apache.org/) - Create PDF for manager reports
 
 ## Plugins Used
 * [FindBugs](http://findbugs.sourceforge.net/)
