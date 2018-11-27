@@ -66,6 +66,8 @@ public class LoginController {
           case 4:
             Main.setPane(SCREENS.VALET.getValue());
             break;
+          case 5:
+            Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
         }
         userName.clear();
         password.clear();

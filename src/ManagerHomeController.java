@@ -1,8 +1,13 @@
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -27,7 +32,53 @@ public class ManagerHomeController {
   //when this button is clicked - radio disappears
   public Button buttonDone;
 
+  @FXML
+  public TableView<Request> allRequestsTable;
 
+
+  public void initialize(){
+    ObservableList<Request> allRequests = Request.getAllRequestList();
+
+    TableColumn requestIDCol = new TableColumn("RequestID");
+    requestIDCol.setMinWidth(20);
+    requestIDCol.setCellValueFactory(
+            new PropertyValueFactory<Request, Integer>("requestID"));
+
+    TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
+    assignedEmployeeCol.setMinWidth(20);
+    assignedEmployeeCol.setCellValueFactory(
+            new PropertyValueFactory<Request, Integer>("empType"));
+
+    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
+    requestEnteredTimestampCol.setMinWidth(60);
+    requestEnteredTimestampCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
+
+    TableColumn detailsCol = new TableColumn("Details");
+    detailsCol.setMinWidth(60);
+    detailsCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestDetail"));
+
+    TableColumn requestStatusCol = new TableColumn("Status");
+    requestStatusCol.setMinWidth(20);
+    requestStatusCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestStatus"));
+
+    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
+    requestedCompletedTimeStampCol.setMinWidth(60);
+    requestedCompletedTimeStampCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
+
+    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
+    requestEmpNotesCol.setMinWidth(60);
+    requestEmpNotesCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestEmpNotes"));
+
+    allRequestsTable.setItems(allRequests);
+    allRequestsTable.getColumns().clear();
+    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
+            requestedCompletedTimeStampCol, requestEmpNotesCol);
+  }
 
   //brings to create new guest account screen
   public void buttonNewAccount(ActionEvent actionEvent) {
@@ -40,7 +91,47 @@ public class ManagerHomeController {
   }
 
   public void viewAllRequests(ActionEvent actionEvent) {
-    Main.setPane(SCREENS.ALLREQUESTS.getValue());
+    ObservableList<Request> allRequests = Request.getAllRequestList();
+
+    TableColumn requestIDCol = new TableColumn("RequestID");
+    requestIDCol.setMinWidth(20);
+    requestIDCol.setCellValueFactory(
+            new PropertyValueFactory<Request, Integer>("requestID"));
+
+    TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
+    assignedEmployeeCol.setMinWidth(20);
+    assignedEmployeeCol.setCellValueFactory(
+            new PropertyValueFactory<Request, Integer>("empType"));
+
+    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
+    requestEnteredTimestampCol.setMinWidth(60);
+    requestEnteredTimestampCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
+
+    TableColumn detailsCol = new TableColumn("Details");
+    detailsCol.setMinWidth(60);
+    detailsCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestDetail"));
+
+    TableColumn requestStatusCol = new TableColumn("Status");
+    requestStatusCol.setMinWidth(20);
+    requestStatusCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestStatus"));
+
+    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
+    requestedCompletedTimeStampCol.setMinWidth(60);
+    requestedCompletedTimeStampCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
+
+    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
+    requestEmpNotesCol.setMinWidth(60);
+    requestEmpNotesCol.setCellValueFactory(
+            new PropertyValueFactory<Request, String>("requestEmpNotes"));
+
+    allRequestsTable.setItems(allRequests);
+    allRequestsTable.getColumns().clear();
+    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
+            requestedCompletedTimeStampCol, requestEmpNotesCol);
   }
 
   public void viewAllEmployees(ActionEvent actionEvent) {
@@ -56,14 +147,6 @@ public class ManagerHomeController {
 //    catch (Exception e) {
 //      e.printStackTrace();
 //    }
-  }
-
-  public void viewFoodServicesEmp(ActionEvent actionEvent) {
-    Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
-  }
-
-  public void viewValetEmp(ActionEvent actionEvent) {
-    Main.setPane(SCREENS.VALETVIEW.getValue());
   }
 
   public void RequestIsDone(ActionEvent actionEvent) {

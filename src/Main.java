@@ -27,7 +27,6 @@ public class Main extends Application {
         grid.add(FXMLLoader.load(Main.class.getResource("housekeepingView.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("maintenanceView.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("valetView.fxml")));
-        grid.add(FXMLLoader.load(Main.class.getResource("allRequests.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("employeeList.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("guestHome.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("maintenanceRequest.fxml")));
@@ -44,7 +43,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-        setPane(SCREENS.MANAGERHOME.getValue());
+        setPane(SCREENS.FOODSERVICESVIEW.getValue());
       }
       catch(Exception e){
         e.printStackTrace();

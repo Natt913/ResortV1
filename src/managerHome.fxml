@@ -27,7 +27,7 @@
       <left>
         <AnchorPane opacity="0.78" prefHeight="771.0" prefWidth="366.0" style="-fx-background-color: #979A9A;" BorderPane.alignment="CENTER">
           <children>
-            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" onDragDetected="#viewValetEmp" prefHeight="547.0" prefWidth="302.0">
+            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" prefHeight="547.0" prefWidth="302.0">
               <children>
                 <Button fx:id="buttonNewGuestAccount" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#buttonNewAccount" prefHeight="47.0" prefWidth="302.0" text="Create New Account">
                   <font>
@@ -40,14 +40,6 @@
                 <Button fx:id="buttonFloorChart" alignment="BASELINE_LEFT" cancelButton="true" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#viewFloorChart" prefHeight="47.0" prefWidth="302.0" text="View Floor Chart">
                   <font>
                     <Font size="22.0" />
-                  </font>
-                  <VBox.margin>
-                    <Insets bottom="20.0" top="20.0" />
-                  </VBox.margin>
-                </Button>
-                <Button fx:id="buttonAllRequests" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests" VBox.vgrow="ALWAYS">
-                  <font>
-                    <Font size="21.0" />
                   </font>
                   <VBox.margin>
                     <Insets bottom="20.0" top="20.0" />
@@ -77,9 +69,13 @@
                     <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="reportButton" alignment="BASELINE_LEFT" ellipsisString="" mnemonicParsing="false" onAction="#createReport" prefHeight="47.0" prefWidth="302.0" text="Create Report"> <font>
+                <Button fx:id="reportButton" alignment="BASELINE_LEFT" ellipsisString="" mnemonicParsing="false" onAction="#createReport" prefHeight="47.0" prefWidth="302.0" text="Create Report">
+                    <font>
                       <Font size="21.0" />
-                   </font>
+                    </font>
+                    <VBox.margin>
+                      <Insets bottom="20.0" top="20.0" />
+                    </VBox.margin>
                 </Button>
               </children>
             </VBox>
@@ -101,12 +97,11 @@
                     <Font size="75.0" />
                   </font>
                 </Text>
-               </children>
-            </Pane>
-            <Pane minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0">
-              <TableView fx:id="allRequestsTable" layoutX="50.0" layoutY="44.0" prefHeight="419.0" prefWidth="814.0" />
-              <Button fx:id="buttonDone" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="495.0" mnemonicParsing="false" onAction="#RequestIsDone" prefHeight="61.0" prefWidth="131.0" text="Mark as Done" />
-            </Pane>
+              </children>
+            </HBox>
+                  <TableView fx:id="allRequestsTable" prefHeight="460.0" prefWidth="915.0" />
+                  <Button fx:id="refreshRequestButton" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="59.0" prefWidth="132.0" text="Refresh Requests" />
+                  <Button fx:id="buttonDone" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RequestIsDone" prefHeight="61.0" prefWidth="131.0" text="Mark as Done" />
           </children>
         </VBox>
       </center>
