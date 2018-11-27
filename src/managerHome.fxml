@@ -27,7 +27,7 @@
       <left>
         <AnchorPane opacity="0.78" prefHeight="771.0" prefWidth="366.0" style="-fx-background-color: #979A9A;" BorderPane.alignment="CENTER">
           <children>
-            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" onDragDetected="#viewValetEmp" prefHeight="547.0" prefWidth="302.0">
+            <VBox fx:id="valet" layoutX="32.0" layoutY="160.0" prefHeight="547.0" prefWidth="302.0">
               <children>
                 <Button fx:id="buttonNewGuestAccount" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#buttonNewAccount" prefHeight="47.0" prefWidth="302.0" text="Create New Account">
                   <font>
@@ -45,31 +45,7 @@
                     <Insets bottom="20.0" top="20.0" />
                   </VBox.margin>
                 </Button>
-                <Button fx:id="buttonAllRequests" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="87.0" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="47.0" prefWidth="302.0" text="View All Requests" VBox.vgrow="ALWAYS">
-                  <font>
-                    <Font size="21.0" />
-                  </font>
-                  <VBox.margin>
-                    <Insets bottom="20.0" top="20.0" />
-                  </VBox.margin>
-                </Button>
                 <Button fx:id="buttonEmployees" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="144.0" mnemonicParsing="false" onAction="#viewAllEmployees" prefHeight="47.0" prefWidth="302.0" text="View Employees">
-                  <font>
-                    <Font size="21.0" />
-                  </font>
-                  <VBox.margin>
-                    <Insets bottom="20.0" top="20.0" />
-                  </VBox.margin>
-                </Button>
-                <Button fx:id="viewFoodServices" alignment="BASELINE_LEFT" ellipsisString="" layoutX="10.0" layoutY="191.0" mnemonicParsing="false" onAction="#viewFoodServicesEmp" prefHeight="47.0" prefWidth="302.0" text="View Food Services">
-                  <font>
-                    <Font size="21.0" />
-                  </font>
-                  <VBox.margin>
-                    <Insets bottom="20.0" top="20.0" />
-                  </VBox.margin>
-                </Button>
-                <Button fx:id="viewValetButton1" alignment="BASELINE_LEFT" ellipsisString="" layoutX="10.0" layoutY="378.0" mnemonicParsing="false" onAction="#viewValetEmp" prefHeight="47.0" prefWidth="302.0" text="View Valet Services">
                   <font>
                     <Font size="21.0" />
                   </font>
@@ -81,6 +57,9 @@
                            <font>
                               <Font size="21.0" />
                            </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
                         </Button>
               </children>
             </VBox>
@@ -108,6 +87,7 @@
               </children>
             </HBox>
                   <TableView fx:id="allRequestsTable" prefHeight="460.0" prefWidth="915.0" />
+                  <Button fx:id="refreshRequestButton" mnemonicParsing="false" onAction="#viewAllRequests" prefHeight="59.0" prefWidth="132.0" text="Refresh Requests" />
                   <Button fx:id="buttonDone" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#RequestIsDone" prefHeight="61.0" prefWidth="131.0" text="Mark as Done" />
           </children>
         </VBox>
