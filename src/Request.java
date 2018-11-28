@@ -64,7 +64,7 @@ public class Request {
         return false;
     }
 
-    public void deleteUser() {
+    public void deleteRequest() {
         User.databaseConnection = User.establishDBConnection();
         try {
             Statement statement = User.databaseConnection.createStatement();
