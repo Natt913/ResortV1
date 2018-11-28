@@ -44,7 +44,7 @@ index  |empType
 2      |HOUSEKEEPING
 3      |MAINTENANCE
 4      |VALET
-4      |FOOD SERVICES
+5      |FOOD SERVICES
 
 ## TODO:
 - [ ] Mark report as Done.
