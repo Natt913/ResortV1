@@ -94,7 +94,6 @@ public class EmployeeListController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    System.out.println("Call to initialize function. Populate table.");
     populateEmployeeList();
   }
 }

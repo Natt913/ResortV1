@@ -1,6 +1,8 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,10 +14,12 @@ public class Request {
   private int reqSrcUserID;
   private int empType;
   private int requestRoomNum;
+  private String empTypeText;
   private String requestDateTime;
   private String requestDetail;
   private int requestStatus;
   private String requestEnteredTimestamp;
+  private String requestEnteredTimeStampReadable;
   private String requestedCompletedTimeStamp;
   private String requestEmpNotes;
 
@@ -27,10 +31,14 @@ public class Request {
     this.assignedAsTask = assignedAsTask;
     this.reqSrcUserID = reqSrcUserID;
     this.empType = empType;
+    this.empTypeText = EMPTYPES.getEmpTypeByIndex(empType).toString();
     this.requestDateTime = requestDateTime;
     this.requestDetail = requestDetail;
     this.requestStatus = requestStatus;
     this.requestEnteredTimestamp = requestEnteredTimestamp;
+    DateTime tsTemp = new DateTime(requestEnteredTimestamp);
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd, HH:mm:ss");
+    this.requestEnteredTimeStampReadable = tsTemp.toString(fmt);
     this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
     this.requestEmpNotes = requestEmpNotes;
     this.requestRoomNum = requestRoomNum;
@@ -40,7 +48,10 @@ public class Request {
   public Request(int reqSrcUserID, int empType, String requestDetail, int requestRoomNum) {
     this.reqSrcUserID = reqSrcUserID;
     this.empType = empType;
+    this.empTypeText = EMPTYPES.getEmpTypeByIndex(empType).toString();
     DateTime dt2 = new DateTime();
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd, HH:mm:ss");
+    this.requestEnteredTimeStampReadable = dt2.toString(fmt);
 //  TODO: requestDateTime and requestEnteredTimestamp are duplicate fields, consolidate and delete one of them
     this.requestDateTime = dt2.toString();
     this.requestEnteredTimestamp = dt2.toString();
@@ -59,13 +70,6 @@ public class Request {
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
       DateTime dt2 = new DateTime();
-
-//      insertResult = statement.executeUpdate("INSERT INTO Requests (requestID, requestDateTime, " +
-//              "assignedAsTask, reqSrcUserID, emptType, requestDetail, requestStatus, requestEnteredTimestamp, " +
-//              "requestCompletedTimestamp, requestEmpNotes) VALUES ("
-//              + requestID + ",'" + requestDateTime + "', '" + assignedAsTask + "', '" + reqSrcUserID +
-//              "', '" + empType + "', '" + requestDetail + "', " + requestStatus + ",'" +
-//              requestEnteredTimestamp + "','" + requestedCompletedTimeStamp + "', " + requestEmpNotes + ")");
 
       insertResult = statement.executeUpdate("INSERT INTO Requests (requestDateTime, assignedAsTask,"
               + "reqSrcUserID, empType, requestDetail, requestStatus, requestEnteredTimestamp, requestRoomNum) "
@@ -119,6 +123,7 @@ public class Request {
 
   // this function is probably not needed. When a request is completed or disabled, the record should probably stay
   public void deleteRequest() {
+    System.out.println("Delete function not active.");
 //        User.databaseConnection = User.establishDBConnection();
 //        try {
 //            Statement statement = User.databaseConnection.createStatement();
@@ -263,6 +268,10 @@ public class Request {
     this.empType = empType;
   }
 
+  public String getEmpTypeText() {
+    return empTypeText;
+  }
+
   public String getRequestDateTime() {
     return requestDateTime;
   }
@@ -290,6 +299,10 @@ public class Request {
 
   public String getRequestEnteredTimestamp() {
     return requestEnteredTimestamp;
+  }
+
+  public String getRequestEnteredTimestampReadable() {
+    return requestEnteredTimeStampReadable;
   }
 
   public void setRequestEnteredTimestamp(String requestEnteredTimestamp) {

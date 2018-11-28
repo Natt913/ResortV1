@@ -39,47 +39,49 @@ public class ManagerHomeController {
 
 
   public void initialize(){
-    ObservableList<Request> allRequests = Request.getAllRequestList();
+    viewAllRequests();
 
-    TableColumn requestIDCol = new TableColumn("RequestID");
-    requestIDCol.setMinWidth(20);
-    requestIDCol.setCellValueFactory(
-            new PropertyValueFactory<Request, Integer>("requestID"));
-
-    TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
-    assignedEmployeeCol.setMinWidth(20);
-    assignedEmployeeCol.setCellValueFactory(
-            new PropertyValueFactory<Request, Integer>("empType"));
-
-    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
-    requestEnteredTimestampCol.setMinWidth(60);
-    requestEnteredTimestampCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
-
-    TableColumn detailsCol = new TableColumn("Details");
-    detailsCol.setMinWidth(60);
-    detailsCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestDetail"));
-
-    TableColumn requestStatusCol = new TableColumn("Status");
-    requestStatusCol.setMinWidth(20);
-    requestStatusCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestStatus"));
-
-    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
-    requestedCompletedTimeStampCol.setMinWidth(60);
-    requestedCompletedTimeStampCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
-
-    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
-    requestEmpNotesCol.setMinWidth(60);
-    requestEmpNotesCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestEmpNotes"));
-
-    allRequestsTable.setItems(allRequests);
-    allRequestsTable.getColumns().clear();
-    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
-            requestedCompletedTimeStampCol, requestEmpNotesCol);
+//    ObservableList<Request> allRequests = Request.getAllRequestList();
+//
+//    TableColumn requestIDCol = new TableColumn("RequestID");
+//    requestIDCol.setMinWidth(20);
+//    requestIDCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, Integer>("requestID"));
+//
+//    TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
+//    assignedEmployeeCol.setMinWidth(20);
+//    assignedEmployeeCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, Integer>("empType"));
+//
+//    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
+//    requestEnteredTimestampCol.setMinWidth(60);
+//    requestEnteredTimestampCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
+//
+//    TableColumn detailsCol = new TableColumn("Details");
+//    detailsCol.setMinWidth(60);
+//    detailsCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, String>("requestDetail"));
+//
+//    TableColumn requestStatusCol = new TableColumn("Status");
+//    requestStatusCol.setMinWidth(20);
+//    requestStatusCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, String>("requestStatus"));
+//
+//    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
+//    requestedCompletedTimeStampCol.setMinWidth(60);
+//    requestedCompletedTimeStampCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
+//
+//    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
+//    requestEmpNotesCol.setMinWidth(60);
+//    requestEmpNotesCol.setCellValueFactory(
+//            new PropertyValueFactory<Request, String>("requestEmpNotes"));
+//
+//    allRequestsTable.setItems(allRequests);
+//    allRequestsTable.getColumns().clear();
+//    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
+//            requestedCompletedTimeStampCol, requestEmpNotesCol);
   }
 
   //brings to create new guest account screen
@@ -92,49 +94,33 @@ public class ManagerHomeController {
     Main.setPane(SCREENS.FLOORCHART.getValue());
   }
 
-
-  public void viewAllRequests(ActionEvent actionEvent) {
+//TODO: Figure out why the table columns are not of correct widths
+  public void viewAllRequests() {
     ObservableList<Request> allRequests = Request.getAllRequestList();
 
     TableColumn requestIDCol = new TableColumn("RequestID");
-    requestIDCol.setMinWidth(20);
+    requestIDCol.setMinWidth(50);
     requestIDCol.setCellValueFactory(
             new PropertyValueFactory<Request, Integer>("requestID"));
 
     TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
-    assignedEmployeeCol.setMinWidth(20);
+    assignedEmployeeCol.setMinWidth(70);
     assignedEmployeeCol.setCellValueFactory(
-            new PropertyValueFactory<Request, Integer>("empType"));
+            new PropertyValueFactory<Request, String>("empTypeText"));
 
     TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
-    requestEnteredTimestampCol.setMinWidth(60);
+    requestEnteredTimestampCol.setMinWidth(70);
     requestEnteredTimestampCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
+            new PropertyValueFactory<Request, String>("requestEnteredTimestampReadable"));
 
     TableColumn detailsCol = new TableColumn("Details");
-    detailsCol.setMinWidth(60);
+    detailsCol.setMinWidth(200);
     detailsCol.setCellValueFactory(
             new PropertyValueFactory<Request, String>("requestDetail"));
 
-    TableColumn requestStatusCol = new TableColumn("Status");
-    requestStatusCol.setMinWidth(20);
-    requestStatusCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestStatus"));
-
-    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
-    requestedCompletedTimeStampCol.setMinWidth(60);
-    requestedCompletedTimeStampCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
-
-    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
-    requestEmpNotesCol.setMinWidth(60);
-    requestEmpNotesCol.setCellValueFactory(
-            new PropertyValueFactory<Request, String>("requestEmpNotes"));
-
     allRequestsTable.setItems(allRequests);
     allRequestsTable.getColumns().clear();
-    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
-            requestedCompletedTimeStampCol, requestEmpNotesCol);
+    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol);
   }
 
   public void viewAllEmployees(ActionEvent actionEvent) {
