@@ -4,7 +4,7 @@ public enum EMPTYPES {
   HOUSEKEEPING,
   MAINTENANCE,
   VALET,
-    FOOD;
+  FOOD;
 
   public static EMPTYPES getEmpTypeByIndex(int index) {
         return EMPTYPES.values()[index]; // less safe

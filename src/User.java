@@ -6,6 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Observable;
 
+//TODO: make the String fields below private again; they were made public to try to fix a table display issue I was having
+//TODO:      but I'm not sure if I then coded in any direct access to them not using a getter(probably not)
+
 public class User {
   private int userID;
   private int userPIN;

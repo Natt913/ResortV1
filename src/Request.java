@@ -7,261 +7,316 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Request {
-    private int requestID;
-    private int assignedAsTask;
-    private int reqSrcUserID;
-    private int empType;
-    private String requestDateTime;
-    private String requestDetail;
-    private int requestStatus;
-    private String requestEnteredTimestamp;
-    private String requestedCompletedTimeStamp;
-    private String requestEmpNotes;
+  private int requestID;
+  private int assignedAsTask;
+  private int reqSrcUserID;
+  private int empType;
+  private int requestRoomNum;
+  private String requestDateTime;
+  private String requestDetail;
+  private int requestStatus;
+  private String requestEnteredTimestamp;
+  private String requestedCompletedTimeStamp;
+  private String requestEmpNotes;
 
-    public Request(int requestID, String requestDateTime, int assignedAsTask, int reqSrcUserID, int empType,
-                   String requestDetail, int requestStatus, String requestEnteredTimestamp,
-                   String requestedCompletedTimeStamp, String requestEmpNotes) {
-        this.requestID = requestID;
-        this.assignedAsTask = assignedAsTask;
-        this.reqSrcUserID = reqSrcUserID;
-        this.empType = empType;
-        this.requestDateTime = requestDateTime;
-        this.requestDetail = requestDetail;
-        this.requestStatus = requestStatus;
-        this.requestEnteredTimestamp = requestEnteredTimestamp;
-        this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
-        this.requestEmpNotes = requestEmpNotes;
+  // Constructor for loading existing events from database as objects
+  public Request(int requestID, String requestDateTime, int assignedAsTask, int reqSrcUserID, int empType,
+                 String requestDetail, int requestStatus, String requestEnteredTimestamp,
+                 String requestedCompletedTimeStamp, String requestEmpNotes, int requestRoomNum) {
+    this.requestID = requestID;
+    this.assignedAsTask = assignedAsTask;
+    this.reqSrcUserID = reqSrcUserID;
+    this.empType = empType;
+    this.requestDateTime = requestDateTime;
+    this.requestDetail = requestDetail;
+    this.requestStatus = requestStatus;
+    this.requestEnteredTimestamp = requestEnteredTimestamp;
+    this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
+    this.requestEmpNotes = requestEmpNotes;
+    this.requestRoomNum = requestRoomNum;
+  }
+
+  // Constructor for creating new requests
+  public Request(int reqSrcUserID, int empType, String requestDetail, int requestRoomNum) {
+    this.reqSrcUserID = reqSrcUserID;
+    this.empType = empType;
+    DateTime dt2 = new DateTime();
+//  TODO: requestDateTime and requestEnteredTimestamp are duplicate fields, consolidate and delete one of them
+    this.requestDateTime = dt2.toString();
+    this.requestEnteredTimestamp = dt2.toString();
+    this.requestDetail = requestDetail;
+    this.requestRoomNum = requestRoomNum;
+    this.requestStatus = 1;
+    this.assignedAsTask = 1;
+  }
+
+
+  public boolean insertRequestInDB() {
+    User.databaseConnection = User.establishDBConnection();
+    int insertResult = 0;
+    try {
+      Statement statement = User.databaseConnection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+      DateTime dt2 = new DateTime();
+
+//      insertResult = statement.executeUpdate("INSERT INTO Requests (requestID, requestDateTime, " +
+//              "assignedAsTask, reqSrcUserID, emptType, requestDetail, requestStatus, requestEnteredTimestamp, " +
+//              "requestCompletedTimestamp, requestEmpNotes) VALUES ("
+//              + requestID + ",'" + requestDateTime + "', '" + assignedAsTask + "', '" + reqSrcUserID +
+//              "', '" + empType + "', '" + requestDetail + "', " + requestStatus + ",'" +
+//              requestEnteredTimestamp + "','" + requestedCompletedTimeStamp + "', " + requestEmpNotes + ")");
+
+      insertResult = statement.executeUpdate("INSERT INTO Requests (requestDateTime, assignedAsTask,"
+              + "reqSrcUserID, empType, requestDetail, requestStatus, requestEnteredTimestamp, requestRoomNum) "
+              + "VALUES ('" + requestDateTime + "', " + assignedAsTask + ", " + reqSrcUserID + ", " + empType + ", '"
+              + requestDetail + "', " + requestStatus + ",'" + requestEnteredTimestamp + "', " + requestRoomNum + ")");
+    } catch (
+            SQLException e) {
+      System.err.println(e.getMessage());
+    } finally {
+      try {
+        if (User.databaseConnection != null)
+          User.databaseConnection.close();
+      } catch (SQLException e) {
+        System.err.println(e.getMessage());
+      }
     }
+    System.out.println("Insert Result " + insertResult);
+    if (insertResult == 1) return true;
+    return false;
+  }
 
-    public boolean insertRequestInDB(){
-        User.databaseConnection = User.establishDBConnection();
-        int insertResult = 0;
-        try {
-            Statement statement = User.databaseConnection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-            DateTime dt2 = new DateTime();
-
-            insertResult = statement.executeUpdate("INSERT INTO Requests (requestID, requestDateTime, " +
-                    "assignedAsTask, reqSrcUserID, emptType, requestDetail, requestStatus, requestEnteredTimestamp, " +
-                    "requestCompletedTimestamp, requestEmpNotes) VALUES ("
-                    + requestID + ",'" + requestDateTime + "', '" + assignedAsTask + "', '" + reqSrcUserID +
-                    "', '" + empType + "', '" + requestDetail + "', " + requestStatus + ",'" +
-                    requestEnteredTimestamp + "','" + requestedCompletedTimeStamp + "', " + requestEmpNotes + ")");
-        } catch (
-        SQLException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (User.databaseConnection != null)
-                    User.databaseConnection.close();
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
-        System.out.println("Insert Result " + insertResult);
-        if (insertResult == 1) return true;
-        return false;
+  public boolean completeRequest(String requestEmpNotes) {
+    if (!requestEmpNotes.equals("")) {
+      this.requestEmpNotes = requestEmpNotes;
     }
+    int completeResult = 0;
+    DateTime currentDT = new DateTime();
+    this.requestedCompletedTimeStamp = currentDT.toString();
+    User.databaseConnection = User.establishDBConnection();
+    try {
+      Statement statement = User.databaseConnection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-    public void deleteRequest() {
-        User.databaseConnection = User.establishDBConnection();
-        try {
-            Statement statement = User.databaseConnection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            int deleteResult = statement.executeUpdate("DELETE FROM Requests WHERE requestID=" + this.requestID);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (User.databaseConnection != null)
-                    User.databaseConnection.close();
-            } catch (SQLException e) {
-                System.err.println(e.getMessage());
-            }
-        }
+      completeResult = statement.executeUpdate("UPDATE Requests SET requestStatus = 2, "
+              + "requestCompletedTimestamp = '" + requestedCompletedTimeStamp + "', requestEmpNotes = '"
+              + this.requestEmpNotes + "', assignedAsTask = 0 WHERE requestID=" + requestID);
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+    } finally {
+      try {
+        if (User.databaseConnection != null)
+          User.databaseConnection.close();
+      } catch (SQLException e) {
+        System.err.println(e.getMessage());
+      }
     }
+    if (completeResult == 1) return true;
+    return false;
+  }
 
-    public static ObservableList<Request> getAllRequestList() {
-        ObservableList<Request> returnRequestList = FXCollections.observableArrayList();
-        try {
-            User.databaseConnection = User.establishDBConnection();
-
-            Statement statement = User.databaseConnection.createStatement();
-            statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-            ResultSet rs = statement.executeQuery("SELECT * FROM Requests");
-            while (rs.next()) {
-                // read the result set and instantiate an object for each user
-                Request tempRequest;
-                tempRequest = new Request(
-                        rs.getInt("requestID"),
-                        rs.getString("requestDateTime"),
-                        rs.getInt("assignedAsTask"),
-                        rs.getInt("reqSrcUserID"),
-                        rs.getInt("empType"),
-                        rs.getString("requestDetail"),
-                        rs.getInt("requestStatus"),
-                        rs.getString("requestEnteredTimestamp"),
-                        rs.getString("requestCompletedTimestamp"),
-                        rs.getString("requestEmpNotes")
-                );
-                returnRequestList.add(tempRequest);
-            }
-        }
-        catch(SQLException e)
-        {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
-            System.err.println(e.getMessage());
-        }
-        finally {
-            try
-            {
-                if(User.databaseConnection != null)
-                    User.databaseConnection.close();
-            }
-            catch(SQLException e)
-            {
-                // connection close failed.
-                System.err.println(e.getMessage());
-            }
-        }
-        return returnRequestList;
-    }
-
-    public static ObservableList<Request> getSelectedRequestList(int employeeType) {
-        ObservableList<Request> returnRequestList = FXCollections.observableArrayList();
-        String query = "";
-
-        if(employeeType >= 1 && employeeType <= 5){
-            query = "SELECT * FROM Requests WHERE empType=" + employeeType;
-            User.databaseConnection = User.establishDBConnection();
-            try{
-                Statement statement = User.databaseConnection.createStatement();
-                statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-                ResultSet rs = statement.executeQuery(query);
-                while (rs.next()) {
-                    // read the result set and instantiate an object for each user
-                    Request tempRequest;
-                    tempRequest = new Request(
-                            rs.getInt("requestID"),
-                            rs.getString("requestDateTime"),
-                            rs.getInt("assignedAsTask"),
-                            rs.getInt("reqSrcUserID"),
-                            rs.getInt("empType"),
-                            rs.getString("requestDetail"),
-                            rs.getInt("requestStatus"),
-                            rs.getString("requestEnteredTimestamp"),
-                            rs.getString("requestCompletedTimestamp"),
-                            rs.getString("requestEmpNotes")
-                    );
-                    returnRequestList.add(tempRequest);
-                }
-                } catch(SQLException e){
-                    // if the error message is "out of memory",
-                    // it probably means no database file is found
-                    System.err.println(e.getMessage());
-                }
-                finally {
-                    try
-                    {
-                        if(User.databaseConnection != null)
-                            User.databaseConnection.close();
-                    }
-                    catch(SQLException e)
-                    {
-                        // connection close failed.
-                        System.err.println(e.getMessage());
-                    }
-                }
-                return returnRequestList;
-            }
-            else{
-                System.err.println("INVALID EMPLOYEE!");
-        }
-        return null;
-    }
-
-    public int getRequestID() {
-        return requestID;
-    }
-
-    public void setRequestID(int requestID) {
-        this.requestID = requestID;
-    }
-
-    public int getAssignedAsTask() {
-        return assignedAsTask;
-    }
-
-    public void setAssignedAsTask(int assignedAsTask) {
-        this.assignedAsTask = assignedAsTask;
-    }
-
-    public int getReqSrcUserID() {
-        return reqSrcUserID;
-    }
-
-    public void setReqSrcUserID(int reqSrcUserID) {
-        this.reqSrcUserID = reqSrcUserID;
-    }
-
-    public int getEmpType() {
-        return empType;
-    }
-
-    public void setEmpType(int empType) {
-        this.empType = empType;
-    }
-
-    public String getRequestDateTime() {
-        return requestDateTime;
-    }
+  // this function is probably not needed. When a request is completed or disabled, the record should probably stay
+  public void deleteRequest() {
+//        User.databaseConnection = User.establishDBConnection();
+//        try {
+//            Statement statement = User.databaseConnection.createStatement();
+//            statement.setQueryTimeout(30);  // set timeout to 30 sec.
 //
-    public void setRequestDateTime(String requestDateTime) {
-        this.requestDateTime = requestDateTime;
-    }
+//            int deleteResult = statement.executeUpdate("DELETE FROM Requests WHERE requestID=" + this.requestID);
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        } finally {
+//            try {
+//                if (User.databaseConnection != null)
+//                    User.databaseConnection.close();
+//            } catch (SQLException e) {
+//                System.err.println(e.getMessage());
+//            }
+//        }
+  }
 
-    public String getRequestDetail() {
-        return requestDetail;
-    }
+  //TODO: In this and the other getRequest method below, make an additional field for a more readable datetime format
+  public static ObservableList<Request> getAllRequestList() {
+    ObservableList<Request> returnRequestList = FXCollections.observableArrayList();
+    try {
+      User.databaseConnection = User.establishDBConnection();
 
-    public void setRequestDetail(String requestDetail) {
-        this.requestDetail = requestDetail;
-    }
+      Statement statement = User.databaseConnection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-    public int getRequestStatus() {
-        return requestStatus;
+      ResultSet rs = statement.executeQuery("SELECT * FROM Requests WHERE requestStatus = 1");
+      while (rs.next()) {
+        // read the result set and instantiate an object for each user
+        Request tempRequest;
+        tempRequest = new Request(
+                rs.getInt("requestID"),
+                rs.getString("requestDateTime"),
+                rs.getInt("assignedAsTask"),
+                rs.getInt("reqSrcUserID"),
+                rs.getInt("empType"),
+                rs.getString("requestDetail"),
+                rs.getInt("requestStatus"),
+                rs.getString("requestEnteredTimestamp"),
+                rs.getString("requestCompletedTimestamp"),
+                rs.getString("requestEmpNotes"),
+                rs.getInt("requestRoomNum")
+        );
+        returnRequestList.add(tempRequest);
+      }
+    } catch (SQLException e) {
+      // if the error message is "out of memory",
+      // it probably means no database file is found
+      System.err.println(e.getMessage());
+    } finally {
+      try {
+        if (User.databaseConnection != null)
+          User.databaseConnection.close();
+      } catch (SQLException e) {
+        // connection close failed.
+        System.err.println(e.getMessage());
+      }
     }
+    return returnRequestList;
+  }
 
-    public void setRequestStatus(int requestStatus) {
-        this.requestStatus = requestStatus;
-    }
+  public static ObservableList<Request> getSelectedRequestList(int employeeType) {
+    ObservableList<Request> returnRequestList = FXCollections.observableArrayList();
+    String query = "";
 
-    public String getRequestEnteredTimestamp() {
-        return requestEnteredTimestamp;
-    }
+    if (employeeType >= 1 && employeeType <= 5) {
+      query = "SELECT * FROM Requests WHERE requestStatus = 1 and empType=" + employeeType;
+      User.databaseConnection = User.establishDBConnection();
+      try {
+        Statement statement = User.databaseConnection.createStatement();
+        statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
-    public void setRequestEnteredTimestamp(String requestEnteredTimestamp) {
-        this.requestEnteredTimestamp = requestEnteredTimestamp;
+        ResultSet rs = statement.executeQuery(query);
+        while (rs.next()) {
+          // read the result set and instantiate an object for each user
+          Request tempRequest;
+          tempRequest = new Request(
+                  rs.getInt("requestID"),
+                  rs.getString("requestDateTime"),
+                  rs.getInt("assignedAsTask"),
+                  rs.getInt("reqSrcUserID"),
+                  rs.getInt("empType"),
+                  rs.getString("requestDetail"),
+                  rs.getInt("requestStatus"),
+                  rs.getString("requestEnteredTimestamp"),
+                  rs.getString("requestCompletedTimestamp"),
+                  rs.getString("requestEmpNotes"),
+                  rs.getInt("requestRoomNum")
+          );
+          returnRequestList.add(tempRequest);
+        }
+      } catch (SQLException e) {
+        // if the error message is "out of memory",
+        // it probably means no database file is found
+        System.err.println(e.getMessage());
+      } finally {
+        try {
+          if (User.databaseConnection != null)
+            User.databaseConnection.close();
+        } catch (SQLException e) {
+          // connection close failed.
+          System.err.println(e.getMessage());
+        }
+      }
+      return returnRequestList;
+    } else {
+      System.err.println("INVALID EMPLOYEE!");
     }
+    return null;
+  }
 
-    public String getRequestedCompletedTimeStamp() {
-        return requestedCompletedTimeStamp;
-    }
+  public int getRequestID() {
+    return requestID;
+  }
 
-    public void setRequestedCompletedTimeStamp(String requestedCompletedTimeStamp) {
-        this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
-    }
+  public void setRequestID(int requestID) {
+    this.requestID = requestID;
+  }
 
-    public String getRequestEmpNotes() {
-        return requestEmpNotes;
-    }
+  public int getAssignedAsTask() {
+    return assignedAsTask;
+  }
 
-    public void setRequestEmpNotes(String requestEmpNotes) {
-        this.requestEmpNotes = requestEmpNotes;
-    }
+  public void setAssignedAsTask(int assignedAsTask) {
+    this.assignedAsTask = assignedAsTask;
+  }
+
+  public int getReqSrcUserID() {
+    return reqSrcUserID;
+  }
+
+  public void setReqSrcUserID(int reqSrcUserID) {
+    this.reqSrcUserID = reqSrcUserID;
+  }
+
+  public int getEmpType() {
+    return empType;
+  }
+
+  public void setEmpType(int empType) {
+    this.empType = empType;
+  }
+
+  public String getRequestDateTime() {
+    return requestDateTime;
+  }
+
+  //
+  public void setRequestDateTime(String requestDateTime) {
+    this.requestDateTime = requestDateTime;
+  }
+
+  public String getRequestDetail() {
+    return requestDetail;
+  }
+
+  public void setRequestDetail(String requestDetail) {
+    this.requestDetail = requestDetail;
+  }
+
+  public int getRequestStatus() {
+    return requestStatus;
+  }
+
+  public void setRequestStatus(int requestStatus) {
+    this.requestStatus = requestStatus;
+  }
+
+  public String getRequestEnteredTimestamp() {
+    return requestEnteredTimestamp;
+  }
+
+  public void setRequestEnteredTimestamp(String requestEnteredTimestamp) {
+    this.requestEnteredTimestamp = requestEnteredTimestamp;
+  }
+
+  public String getRequestedCompletedTimeStamp() {
+    return requestedCompletedTimeStamp;
+  }
+
+  public void setRequestedCompletedTimeStamp(String requestedCompletedTimeStamp) {
+    this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
+  }
+
+  public String getRequestEmpNotes() {
+    return requestEmpNotes;
+  }
+
+  public void setRequestEmpNotes(String requestEmpNotes) {
+    this.requestEmpNotes = requestEmpNotes;
+  }
+
+  public int getRequestRoomNum() {
+    return requestRoomNum;
+  }
+
+  public void setRequestRoomNum(int requestRoomNum) {
+    this.requestRoomNum = requestRoomNum;
+  }
 }
