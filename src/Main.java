@@ -43,7 +43,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-        setPane(SCREENS.FOODSERVICESVIEW.getValue());
+        // Use the line below to skip login screen and jump to another to save time if frequently running
+//        setPane(SCREENS.FOODSERVICESVIEW.getValue());
       }
       catch(Exception e){
         e.printStackTrace();

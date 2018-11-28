@@ -23,6 +23,8 @@ public class ManagerHomeController {
   public Button buttonAllRequests;
   public Button buttonEmployees;
   public Button viewFoodServices;
+  @FXML
+  private Button viewFoodServicesEmp;
 
   //these are request radio buttons - they suppose to disappear when req is done
   public CheckBox radio1;
@@ -90,6 +92,7 @@ public class ManagerHomeController {
     Main.setPane(SCREENS.FLOORCHART.getValue());
   }
 
+
   public void viewAllRequests(ActionEvent actionEvent) {
     ObservableList<Request> allRequests = Request.getAllRequestList();
 
@@ -148,6 +151,15 @@ public class ManagerHomeController {
 //      e.printStackTrace();
 //    }
   }
+
+  public void viewFoodServicesEmp(ActionEvent actionEvent) {
+    Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
+  }
+
+  public void viewValetEmp(ActionEvent actionEvent) {
+    Main.setPane(SCREENS.VALETVIEW.getValue());
+  }
+
 
   public void RequestIsDone(ActionEvent actionEvent) {
   }
@@ -221,7 +233,6 @@ public class ManagerHomeController {
     } catch(IOException e){
       System.out.println(e.toString());
     }
-
 
 
   }
