@@ -88,7 +88,8 @@ public class CreateNewGuestAccountController {
 
     System.out.println("new userID: " + newUserID);
     Room thisRoom = new Room(roomNumber, newUserID);
-    thisRoom.updateRoomDB();
+    thisRoom.checkIn(newUserID);
+//    FloorChartController.initialize();
 
 
 //    Room thisRoom = new Room(roomNumber);

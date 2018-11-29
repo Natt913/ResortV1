@@ -86,7 +86,6 @@ public class Room {
     }
     catch(SQLException e)
     {
-      System.out.println("You suck");
       // if the error message is "out of memory",
       // it probably means no database file is found
       System.err.println(e.getMessage());
@@ -114,6 +113,10 @@ public class Room {
       Statement statement = databaseConnection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
+      String updateQuery = "update Rooms set roomStatus = " + roomStatus + ", guestUserID = "
+              + guestUserID + ", roomCheckedIn = '" + roomCheckedIn + "' where roomNumber = " + roomNumber;
+      System.out.println(updateQuery);
+
       updateResult = statement.executeUpdate("update Rooms set roomStatus = " + roomStatus + ", guestUserID = "
               + guestUserID + ", roomCheckedIn = '" + roomCheckedIn + "' where roomNumber = " + roomNumber);
     } catch (SQLException e) {
@@ -126,7 +129,7 @@ public class Room {
         System.err.println(e.getMessage());
       }
     }
-    System.out.println("Insert Result " + updateResult);
+    System.out.println("Update Result " + updateResult);
     if (updateResult == 1) return true;
     return false;
   }

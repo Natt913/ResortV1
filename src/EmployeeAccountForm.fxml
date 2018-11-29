@@ -47,6 +47,7 @@
             <Font size="20.0" />
           </font>
         </TextField>
+        <!-- TODO: Turn this field into a drop-down menu populated with the employee types -->
         <TextField fx:id="empTypeField" layoutX="14.0" layoutY="166.0" prefHeight="38.0" prefWidth="257.0" promptText="Employee Type">
           <font>
             <Font size="20.0" />

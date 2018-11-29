@@ -44,7 +44,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         // Use the line below to skip login screen and jump to another to save time if frequently running
-        setPane(SCREENS.MANAGERHOME.getValue());
+//        setPane(SCREENS.GUESTHOME.getValue());
       }
       catch(Exception e){
         e.printStackTrace();

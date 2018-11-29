@@ -78,12 +78,12 @@
         </Text>
       </children>
     </HBox>
-    <Button fx:id="buttonViewRequests" layoutX="130.0" layoutY="549.0" mnemonicParsing="false" onAction="#viewActiveRequests" opacity="0.64" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #603ef8;" text="View Active Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+    <Button fx:id="buttonViewRequests" layoutX="130.0" layoutY="549.0" mnemonicParsing="false" onAction="#goBackHome" opacity="0.64" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #603ef8;" text="View Active Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true">
       <font>
         <Font name="System Bold" size="13.0" />
       </font>
     </Button>
-    <Button fx:id="buttonMaintenance" layoutX="130.0" layoutY="609.0" mnemonicParsing="false" onAction="#viewMaintenance" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #908c8b;" text="View Maintenance" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+    <Button fx:id="buttonRefresh" layoutX="130.0" layoutY="609.0" mnemonicParsing="false" onAction="#initialize" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #908c8b;" text="Refresh" textAlignment="CENTER" textFill="WHITE" wrapText="true">
       <font>
         <Font name="System Bold" size="13.0" />
       </font>

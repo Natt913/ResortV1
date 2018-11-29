@@ -69,6 +69,11 @@ public class ManagerHomeController {
     requestEnteredTimestampCol.setCellValueFactory(
             new PropertyValueFactory<Request, String>("requestEnteredTimestampReadable"));
 
+    TableColumn roomNumCol = new TableColumn("Room Number");
+    roomNumCol.setMinWidth(60.0);
+    roomNumCol.setCellValueFactory(
+            new PropertyValueFactory<Request, Integer>("requestRoomNum"));
+
     TableColumn detailsCol = new TableColumn("Details");
     detailsCol.setMinWidth(360.0);
     detailsCol.setCellValueFactory(
@@ -76,7 +81,7 @@ public class ManagerHomeController {
 
     allRequestsTable.setItems(allRequests);
     allRequestsTable.getColumns().clear();
-    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol);
+    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, roomNumCol, requestEnteredTimestampCol, detailsCol);
   }
 
   public void viewAllEmployees(ActionEvent actionEvent) {
