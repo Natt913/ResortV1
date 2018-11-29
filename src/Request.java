@@ -71,10 +71,13 @@ public class Request {
 
       DateTime dt2 = new DateTime();
 
-      insertResult = statement.executeUpdate("INSERT INTO Requests (requestDateTime, assignedAsTask,"
+      String requestInsertQ = "INSERT INTO Requests (requestDateTime, assignedAsTask,"
               + "reqSrcUserID, empType, requestDetail, requestStatus, requestEnteredTimestamp, requestRoomNum) "
               + "VALUES ('" + requestDateTime + "', " + assignedAsTask + ", " + reqSrcUserID + ", " + empType + ", '"
-              + requestDetail + "', " + requestStatus + ",'" + requestEnteredTimestamp + "', " + requestRoomNum + ")");
+              + requestDetail + "', " + requestStatus + ",'" + requestEnteredTimestamp + "', " + requestRoomNum + ")";
+      System.out.println(requestInsertQ);
+
+      insertResult = statement.executeUpdate(requestInsertQ);
     } catch (
             SQLException e) {
       System.err.println(e.getMessage());

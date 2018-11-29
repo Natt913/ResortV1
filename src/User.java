@@ -25,6 +25,7 @@ public class User {
   private int guestRoomNumber;
   private boolean authenticated = false;
   static Connection databaseConnection = null;
+  static User globalCurrentUser;
 
   // Employee constructor
   public User(int userID, String userName, int userPIN, int isEmployee, int empType,
@@ -109,6 +110,7 @@ public class User {
         this.guestRoomNumber = rs.getInt(7);
         this.empType = rs.getInt(8);
         this.authenticated = true;
+        globalCurrentUser = this;
         // set all object fields now
         System.out.println("Authenticated");
         System.out.println("name = " + this.userName);
@@ -306,6 +308,11 @@ public class User {
   public int getUserID() {
     return this.userID;
   }
+
+  public int getGuestRoomNumber() {
+    return guestRoomNumber;
+  }
+
   public String getUserName() {
     return this.userName;
   }
