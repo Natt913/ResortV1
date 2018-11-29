@@ -82,7 +82,7 @@
       </Pane>
       <Pane layoutX="123.0" layoutY="31.0" prefHeight="175.0" prefWidth="975.0">
          <children>
-            <Text layoutX="46.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create New Account" textAlignment="CENTER" wrappingWidth="865.46875">
+            <Text layoutX="46.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Check In Guest" textAlignment="CENTER" wrappingWidth="865.46875">
                <font>
                   <Font size="54.0" />
                </font>

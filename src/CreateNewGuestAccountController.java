@@ -10,11 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-//TODO: Make use of some of the extra fields for guests(credit card, address, etc.) and add column in Users database table
-//TODO: to store email address rather than discard it
-//TODO: Create method or lambda expression to disable and enable the appropriate fields when radio button is Employee/Guest
+//TODO: Make use of some of the extra fields for guests(credit card, address, etc.)
 //TODO: Better error checking for input fields
-//TODO: Change for using separate constructors for Employee and Guest to one constructor to simplify things
+
 public class CreateNewGuestAccountController {
 
   private String userFirstName;
@@ -89,6 +87,8 @@ public class CreateNewGuestAccountController {
     User newGuest = new User(0, userName, userFirstName, userLastName, userEmail, userPhone, userPIN,roomNumber,
             userStatus);
     insertSuccessful = newGuest.insertUserInDB();
+
+//    Room thisRoom = new Room(roomNumber);
 
     if (insertSuccessful) {
       //After DB method returns true

@@ -32,38 +32,38 @@ public class EmployeeListController implements Initializable {
   public void populateEmployeeList() {
     ObservableList<User> currentEmployeeList = User.getUserList(1);
     TableColumn userIDCol = new TableColumn("UserID");
-      userIDCol.setMinWidth(60);
+      userIDCol.setMinWidth(60.0);
       userIDCol.setCellValueFactory(
               new PropertyValueFactory<User, Integer>("userID"));
 
     TableColumn userNameCol = new TableColumn("UserName");
-      userNameCol.setMinWidth(75);
+      userNameCol.setMinWidth(75.0);
       userNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userName"));
 
     TableColumn firstNameCol = new TableColumn("FirstName");
-      firstNameCol.setMinWidth(90);
+      firstNameCol.setMinWidth(90.0);
       firstNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userFirstName"));
 
     TableColumn lastNameCol = new TableColumn("LastName");
-      lastNameCol.setMinWidth(90);
+      lastNameCol.setMinWidth(90.0);
       lastNameCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userLastName"));
 
     TableColumn emailCol = new TableColumn("Email");
-      emailCol.setMinWidth(220);
+      emailCol.setMinWidth(220.0);
+      emailCol.setPrefWidth(220.0);
       emailCol.setCellValueFactory(
               new PropertyValueFactory<User, String>("userEmail"));
 
     TableColumn empTypeTextCol = new TableColumn("Employee Type");
-        empTypeTextCol.setMinWidth(110);
+        empTypeTextCol.setMinWidth(110.0);
         empTypeTextCol.setCellValueFactory(
                 new PropertyValueFactory<User, String>("empTypeText"));
 
     employeeTable.setItems(currentEmployeeList);
     employeeTable.getColumns().clear();
-//    employeeTable.getColumns().removeAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, employeeTypeCol);
     employeeTable.getColumns().addAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, empTypeTextCol);
   }
 

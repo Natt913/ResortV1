@@ -1,4 +1,3 @@
-
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,48 +39,6 @@ public class ManagerHomeController {
 
   public void initialize(){
     viewAllRequests();
-
-//    ObservableList<Request> allRequests = Request.getAllRequestList();
-//
-//    TableColumn requestIDCol = new TableColumn("RequestID");
-//    requestIDCol.setMinWidth(20);
-//    requestIDCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, Integer>("requestID"));
-//
-//    TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
-//    assignedEmployeeCol.setMinWidth(20);
-//    assignedEmployeeCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, Integer>("empType"));
-//
-//    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
-//    requestEnteredTimestampCol.setMinWidth(60);
-//    requestEnteredTimestampCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, String>("requestEnteredTimestamp"));
-//
-//    TableColumn detailsCol = new TableColumn("Details");
-//    detailsCol.setMinWidth(60);
-//    detailsCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, String>("requestDetail"));
-//
-//    TableColumn requestStatusCol = new TableColumn("Status");
-//    requestStatusCol.setMinWidth(20);
-//    requestStatusCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, String>("requestStatus"));
-//
-//    TableColumn requestedCompletedTimeStampCol = new TableColumn("Completed on");
-//    requestedCompletedTimeStampCol.setMinWidth(60);
-//    requestedCompletedTimeStampCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, String>("requestCompletedTimestamp"));
-//
-//    TableColumn requestEmpNotesCol = new TableColumn("Employee Notes");
-//    requestEmpNotesCol.setMinWidth(60);
-//    requestEmpNotesCol.setCellValueFactory(
-//            new PropertyValueFactory<Request, String>("requestEmpNotes"));
-//
-//    allRequestsTable.setItems(allRequests);
-//    allRequestsTable.getColumns().clear();
-//    allRequestsTable.getColumns().addAll(requestIDCol, assignedEmployeeCol, requestEnteredTimestampCol, detailsCol, requestStatusCol,
-//            requestedCompletedTimeStampCol, requestEmpNotesCol);
   }
 
   //brings to create new guest account screen
@@ -94,27 +51,26 @@ public class ManagerHomeController {
     Main.setPane(SCREENS.FLOORCHART.getValue());
   }
 
-//TODO: Figure out why the table columns are not of correct widths
   public void viewAllRequests() {
     ObservableList<Request> allRequests = Request.getAllRequestList();
 
     TableColumn requestIDCol = new TableColumn("RequestID");
-    requestIDCol.setMinWidth(50);
+    requestIDCol.setMinWidth(60.0);
     requestIDCol.setCellValueFactory(
             new PropertyValueFactory<Request, Integer>("requestID"));
 
     TableColumn assignedEmployeeCol = new TableColumn("Assigned Employee");
-    assignedEmployeeCol.setMinWidth(70);
+    assignedEmployeeCol.setMinWidth(70.0);
     assignedEmployeeCol.setCellValueFactory(
             new PropertyValueFactory<Request, String>("empTypeText"));
 
-    TableColumn requestEnteredTimestampCol = new TableColumn("Request submitted on");
-    requestEnteredTimestampCol.setMinWidth(70);
+    TableColumn requestEnteredTimestampCol = new TableColumn("Request Submitted On");
+    requestEnteredTimestampCol.setMinWidth(70.0);
     requestEnteredTimestampCol.setCellValueFactory(
             new PropertyValueFactory<Request, String>("requestEnteredTimestampReadable"));
 
     TableColumn detailsCol = new TableColumn("Details");
-    detailsCol.setMinWidth(200);
+    detailsCol.setMinWidth(360.0);
     detailsCol.setCellValueFactory(
             new PropertyValueFactory<Request, String>("requestDetail"));
 
@@ -125,17 +81,6 @@ public class ManagerHomeController {
 
   public void viewAllEmployees(ActionEvent actionEvent) {
     Main.setPane(SCREENS.EMPLOYEELIST.getValue());
-    // Messing around with loading from FXML at this point in order to fire initialize() method at right time.
-    // This is going to be an all-or-nothing kind of change.
-//
-//    try {
-////      Main.root.getChildren().remove(Main.grid.get(Main.current));
-//      Main.root.getChildren().removeAll(Main.grid);
-//      Main.root.getChildren().add(FXMLLoader.load(Main.class.getResource("employeeList.fxml")));
-//    }
-//    catch (Exception e) {
-//      e.printStackTrace();
-//    }
   }
 
   public void viewFoodServicesEmp(ActionEvent actionEvent) {
@@ -219,7 +164,6 @@ public class ManagerHomeController {
     } catch(IOException e){
       System.out.println(e.toString());
     }
-
 
   }
 }
