@@ -72,10 +72,10 @@ public class EmployeeAccountFormController {
     User newEmployee = new User(0, userName, userFirstName, userLastName, userEmail, userPhone, userPIN,
             userIsEmployee, userEmpType, userStatus);
 
-    insertSuccessful = newEmployee.insertUserInDB();
+    int userID = newEmployee.insertUserInDB();
 
     if (insertSuccessful) {
-      String dialogText = userFirstName + " " + userLastName + " with userName: " + userName;
+      String dialogText = userFirstName + " " + userLastName + " with userName: " + userName + " and userID: " + userID;
 
       //After DB method returns true
       Alert alert = new Alert(AlertType.INFORMATION);

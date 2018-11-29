@@ -156,7 +156,7 @@ public class User {
     return null;
   }
 
-  public boolean insertUserInDB() {
+  public int insertUserInDB() {
     databaseConnection = establishDBConnection();
     int insertResult = 0;
     try {
@@ -170,6 +170,15 @@ public class User {
               + userPIN + ",'" + userName + "', '" + userFirstName + "', '" + userLastName + "', '" + userEmail + "', '"
               + userPhone + "', " + isEmployee + ",'" + userStatus + "','" + dt2 + "', " + guestRoomNumber + ", "
               + empType + ")");
+
+      Statement statement2 = databaseConnection.createStatement();
+      ResultSet rs = statement2.executeQuery("select userID from Users where userName = '" + userName + "'");
+      int resultCount = 0;
+
+      while(rs.next()) {
+        resultCount++;
+        this.userID = rs.getInt(1);
+      }
     } catch (SQLException e) {
       System.err.println(e.getMessage());
     } finally {
@@ -180,9 +189,8 @@ public class User {
         System.err.println(e.getMessage());
       }
     }
-    System.out.println("Insert Result " + insertResult);
-    if (insertResult == 1) return true;
-    return false;
+    System.out.println("UserID " + userID);
+    return userID;
   }
 
   public void deleteUser() {

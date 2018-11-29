@@ -107,6 +107,7 @@ public class Room {
   }
 
   public boolean updateRoomDB() {
+    System.out.println("Updating Rooms database");
     databaseConnection = establishDBConnection();
     int updateResult = 0;
     try {
