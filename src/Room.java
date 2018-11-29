@@ -1,5 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.joda.time.DateTime;
 
 import java.sql.*;
 
@@ -23,10 +24,17 @@ public class Room {
     this.roomCheckingOut = roomCheckingOut;
   }
 
+  public Room(int roomNumber, int guestUserID) {
+    this.roomNumber = roomNumber;
+    this.guestUserID = guestUserID;
+  }
+
   public boolean checkIn(int guestUserID) {
     roomStatus = 1;
-    this.guestUserID = guestUserID;
-    return true;
+    DateTime currentDT = new DateTime();
+    roomCheckedIn = currentDT.toString();
+    DateTime dt2 = new DateTime();
+    return updateRoomDB();
   }
 
   public boolean checkOut() {
@@ -36,9 +44,10 @@ public class Room {
   }
 
   public static Connection establishDBConnection() {
-    Connection databaseConnection = null;
+    databaseConnection = null;
     try {
       databaseConnection = DriverManager.getConnection("jdbc:sqlite:database/ResortProject.db");
+      System.out.println("Returning connection");
       return databaseConnection;
     }
     catch(SQLException e) {
@@ -52,8 +61,9 @@ public class Room {
     try
     {
       databaseConnection = establishDBConnection();
+      System.out.println("Connection success");
 
-      Statement statement = User.databaseConnection.createStatement();
+      Statement statement = Room.databaseConnection.createStatement();
       statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
       ResultSet rs = statement.executeQuery("select * from Rooms" );
@@ -76,6 +86,7 @@ public class Room {
     }
     catch(SQLException e)
     {
+      System.out.println("You suck");
       // if the error message is "out of memory",
       // it probably means no database file is found
       System.err.println(e.getMessage());
@@ -95,33 +106,35 @@ public class Room {
     return returnRoomList;
   }
 
-//  public boolean insertUserInDB() {
-//    databaseConnection = establishDBConnection();
-//    int insertResult = 0;
-//    try {
-//      Statement statement = databaseConnection.createStatement();
-//      statement.setQueryTimeout(30);  // set timeout to 30 sec.
-//
-//      DateTime dt2 = new DateTime();
-//
-//      insertResult = statement.executeUpdate("insert into Users (userPIN, userName, userFirstName, userLastName,"
-//              + "userEmail, userPhone, isEmployee, userStatus, userCreated, guestRoomNumber, empType) VALUES ("
-//              + userPIN + ",'" + userName + "', '" + userFirstName + "', '" + userLastName + "', '" + userEmail + "', '"
-//              + userPhone + "', " + isEmployee + ",'" + userStatus + "','" + dt2 + "', " + guestRoomNumber + ", "
-//              + empType + ")");
-//    } catch (SQLException e) {
-//      System.err.println(e.getMessage());
-//    } finally {
-//      try {
-//        if (databaseConnection != null)
-//          databaseConnection.close();
-//      } catch (SQLException e) {
-//        System.err.println(e.getMessage());
-//      }
-//    }
-//    System.out.println("Insert Result " + insertResult);
-//    if (insertResult == 1) return true;
-//    return false;
-//  }
+  public boolean updateRoomDB() {
+    databaseConnection = establishDBConnection();
+    int updateResult = 0;
+    try {
+      Statement statement = databaseConnection.createStatement();
+      statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+      updateResult = statement.executeUpdate("update Rooms set roomStatus = " + roomStatus + ", guestUserID = "
+              + guestUserID + ", roomCheckedIn = '" + roomCheckedIn + "' where roomNumber = " + roomNumber);
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+    } finally {
+      try {
+       if (databaseConnection != null)
+          databaseConnection.close();
+      } catch (SQLException e) {
+        System.err.println(e.getMessage());
+      }
+    }
+    System.out.println("Insert Result " + updateResult);
+    if (updateResult == 1) return true;
+    return false;
+  }
+
+  public int getRoomNumber() {
+    return roomNumber;
+  }
+  public int getRoomStatus() {
+    return roomStatus;
+  }
 
 }

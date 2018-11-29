@@ -49,7 +49,7 @@ public class ConsoleMain {
 //  This is how to create a new request object
     Request myTestRequest = new Request(1016, 2, "The toilet has a floater in it!", 8);
 //  Upon creation of the object, use this method to insert into database (returns boolean)
-    boolean insertSuccess = myTestRequest.insertRequestInDB();
+//    boolean insertSuccess = myTestRequest.insertRequestInDB();
 //    System.out.println(myTestRequest.getReqSrcUserID() + " " + myTestRequest.getRequestDetail());
 
     // Acquire a list of active requests from the database

@@ -37,7 +37,7 @@ public class Request {
     this.requestStatus = requestStatus;
     this.requestEnteredTimestamp = requestEnteredTimestamp;
     DateTime tsTemp = new DateTime(requestEnteredTimestamp);
-    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd, HH:mm:ss");
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd, HH:mm:ss");
     this.requestEnteredTimeStampReadable = tsTemp.toString(fmt);
     this.requestedCompletedTimeStamp = requestedCompletedTimeStamp;
     this.requestEmpNotes = requestEmpNotes;
@@ -50,7 +50,7 @@ public class Request {
     this.empType = empType;
     this.empTypeText = EMPTYPES.getEmpTypeByIndex(empType).toString();
     DateTime dt2 = new DateTime();
-    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyyMMdd, HH:mm:ss");
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd, HH:mm:ss");
     this.requestEnteredTimeStampReadable = dt2.toString(fmt);
 //  TODO: requestDateTime and requestEnteredTimestamp are duplicate fields, consolidate and delete one of them
     this.requestDateTime = dt2.toString();
