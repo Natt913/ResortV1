@@ -12,6 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.Action;
 
+/**
+ * Class HousekeepingRequestController allows guests to submit a personalized housekeeping request.
+ */
 public class HousekeepingRequestController {
     public Button buttonSubmitRequestHouskeeping;
     public TextField towelAmount;
@@ -25,10 +28,21 @@ public class HousekeepingRequestController {
     public CheckBox makeBed;
     public TextField textOtherReqs;
 
+    /**
+     * Brings guest back to the home screen.
+     *
+     * @param mouseEvent - Mouse click
+     */
     public void getBackHome(MouseEvent mouseEvent) {
         Main.setPane(SCREENS.GUESTHOME.getValue());
     }
 
+    /**
+     * Creates a request by fetching data from user. Request is inserted into DB through query.
+     *
+     * TODO: IMPLEMENT THIS
+     * @param event - Mouse click
+     */
     public void submitRequest(ActionEvent event){
       //After DB method returns true
       Alert alert = new Alert(AlertType.INFORMATION);
@@ -38,6 +52,7 @@ public class HousekeepingRequestController {
 
       alert.showAndWait();
 
+      //Once the request is submitted bring guests home
       Main.setPane(SCREENS.GUESTHOME.getValue());
     }
 }

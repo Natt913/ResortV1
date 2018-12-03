@@ -5,6 +5,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Class EmployeeAccountFormController allows managers to create a user of type employee. The employee type will be
+ * identified by the integer variable userEmpType.
+ *
+ */
 public class EmployeeAccountFormController {
 
   private String userFirstName;
@@ -35,6 +40,12 @@ public class EmployeeAccountFormController {
   @FXML
   public ImageView logoHome;
 
+  /**
+   * Function CreateAccount, utilizes userType = 1 since we are creating an employee and not a guest.
+   * Fetches data from textBoxes and creates a query to insert the employee in the user table of the DB.
+   *
+   * @param actionEvent - Mouse click
+   */
   public void CreateAccount(ActionEvent actionEvent) {
     userIsEmployee = 1;
     userStatus = "active";
@@ -42,6 +53,8 @@ public class EmployeeAccountFormController {
     userLastName = lastName.getText();
     userEmail = emailField.getText();
     userPhone = phoneNumberField.getText();
+
+    //PIN must be an integer
     try {
       userPIN = Integer.parseInt(pinField.getText());
     } catch (Exception e) {
@@ -56,6 +69,7 @@ public class EmployeeAccountFormController {
     }
     userName = userFirstName.toLowerCase() + userLastName.toLowerCase().charAt(0);
 
+    //Employee type must be an integer
     try {
       userEmpType = Integer.parseInt(empTypeField.getText());
     } catch (Exception e) {
@@ -77,7 +91,7 @@ public class EmployeeAccountFormController {
     if (insertSuccessful) {
       String dialogText = userFirstName + " " + userLastName + " with userName: " + userName + " and userID: " + userID;
 
-      //After DB method returns true
+      //After user is created successfully
       Alert alert = new Alert(AlertType.INFORMATION);
       alert.setTitle("User Created!");
       alert.setHeaderText("Account has been created successfully!");
@@ -87,6 +101,11 @@ public class EmployeeAccountFormController {
     }
   }
 
+  /**
+   * Brings the manager back to the Employee List screen.
+   *
+   * @param mouseEvent - Mouse click
+   */
   public void getBackHome(MouseEvent mouseEvent) {
     Main.setPane(SCREENS.EMPLOYEELIST.getValue());
   }

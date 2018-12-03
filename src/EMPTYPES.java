@@ -1,3 +1,6 @@
+/**
+ * EMPTYPES specifies "what type of employee" a user can be.
+ */
 public enum EMPTYPES {
   INVALID,
   MANAGER,

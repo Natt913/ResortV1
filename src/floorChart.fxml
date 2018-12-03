@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="outerPane" fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FloorChartController">
+<AnchorPane id="outerPane" fx:id="outerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FloorChartController">
   <children>
     <ImageView fitHeight="800.0" fitWidth="1280.0" opacity="0.3" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <image>
@@ -33,11 +33,6 @@
         <Image url="@resources/Logo.gif" />
       </image>
     </ImageView>
-    <Button fx:id="viewAsList" layoutX="1081.0" layoutY="226.0" onAction="#viewAsList" prefHeight="48.0" prefWidth="176.0" style="-fx-background-color: #EBEDEF;" text="View as a List">
-      <font>
-        <Font size="22.0" />
-      </font>
-    </Button>
     <HBox layoutX="33.0" layoutY="313.0" prefHeight="39.0" prefWidth="394.0">
       <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="41.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
@@ -78,23 +73,18 @@
         </Text>
       </children>
     </HBox>
-    <Button fx:id="buttonViewRequests" layoutX="130.0" layoutY="549.0" mnemonicParsing="false" onAction="#goBackHome" opacity="0.64" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #603ef8;" text="View Active Requests" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+    <Button fx:id="buttonRefresh" layoutX="142.0" layoutY="561.0" mnemonicParsing="false" onAction="#initialize" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #908c8b;" text="Refresh Map" textAlignment="CENTER" textFill="WHITE" wrapText="true">
       <font>
         <Font name="System Bold" size="13.0" />
       </font>
     </Button>
-    <Button fx:id="buttonRefresh" layoutX="130.0" layoutY="609.0" mnemonicParsing="false" onAction="#initialize" prefHeight="40.0" prefWidth="176.0" style="-fx-background-color: #908c8b;" text="Refresh" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-      <font>
-        <Font name="System Bold" size="13.0" />
-      </font>
-    </Button>
-    <Rectangle fx:id="room100" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="523.0" layoutY="324.0" onDragDetected="#getInfoRoom100" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+    <Rectangle fx:id="room100" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="523.0" layoutY="324.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Text layoutX="536.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="100">
       <font>
         <Font size="21.0" />
       </font>
     </Text>
-    <Rectangle fx:id="room102" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="585.0" layoutY="324.0" onDragDetected="#getInfo" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+    <Rectangle fx:id="room102" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="585.0" layoutY="324.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Text layoutX="598.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="102">
       <font>
         <Font size="21.0" />
@@ -146,7 +136,7 @@
     <Rectangle fx:id="room109" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="771.0" layoutY="538.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Rectangle fx:id="room105" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="647.0" layoutY="539.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Rectangle fx:id="room115" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="957.0" layoutY="539.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
-    <Rectangle fx:id="room103" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="585.0" layoutY="538.0" onDragDetected="#getInforoom103" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+    <Rectangle fx:id="room103" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="585.0" layoutY="538.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Rectangle fx:id="room107" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="709.0" layoutY="538.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Text layoutX="722.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="107">
       <font>
@@ -163,7 +153,7 @@
         <Font size="21.0" />
       </font>
     </Text>
-    <Rectangle fx:id="room101" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="523.0" layoutY="539.0" onDragDetected="#getInforoom101" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+    <Rectangle fx:id="room101" arcHeight="5.0" arcWidth="5.0" fill="#36c900" height="64.0" layoutX="523.0" layoutY="539.0" stroke="BLACK" strokeType="INSIDE" width="62.0" />
     <Text layoutX="784.0" layoutY="577.0" strokeType="OUTSIDE" strokeWidth="0.0" text="109">
       <font>
         <Font size="21.0" />

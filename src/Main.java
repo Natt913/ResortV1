@@ -36,6 +36,7 @@ public class Main extends Application {
         grid.add(FXMLLoader.load(Main.class.getResource("foodServicesView.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("valetView.fxml")));
         grid.add(FXMLLoader.load(Main.class.getResource("employeeAccountForm.fxml")));
+        grid.add(FXMLLoader.load(Main.class.getResource("guestList.fxml")));
 
         root.getChildren().add(grid.get(SCREENS.LOGIN.getValue()));
 
@@ -44,7 +45,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
         // Use the line below to skip login screen and jump to another to save time if frequently running
-//        setPane(SCREENS.GUESTHOME.getValue());
+        setPane(SCREENS.MANAGERHOME.getValue());
       }
       catch(Exception e){
         e.printStackTrace();

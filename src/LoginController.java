@@ -10,9 +10,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * Class LoginController checks for username and password in the DB table user. If the user
+ */
 public class LoginController {
 
-  //keep variables public
+  //keep variables public otherwise you may encounter issues in fetching data
   public TextField userName;
   public PasswordField password;
   public Button buttonLogin;

@@ -16,15 +16,11 @@ import java.util.List;
 
 import static org.bouncycastle.asn1.x500.style.RFC4519Style.ou;
 
+/**
+ * Class FloorChartController displays rooms with a graphical design. The rooms are color coordinated based on
+ * their status (whether they are available, have an active request, booked, etc.)
+ */
 public class FloorChartController {
-
-  //created fields only for room 100-104.
-  //I imagined that once room is clicked you can get info of a guest
-
-  @FXML
-  private Button buttonViewRequests;
-  @FXML
-  private Button buttonMaintenance;
   @FXML
   private Rectangle room100;
   @FXML
@@ -60,11 +56,16 @@ public class FloorChartController {
   @FXML
   private ImageView logoHome;
   Rectangle[] rectArray = new Rectangle[16];
+
+  //Set types of color that a room can be
   public static Paint colorRed =  Paint.valueOf("#bc2705");
   public static Paint colorGray =  Paint.valueOf("#603ef8");
   public static Paint colorPurp =  Paint.valueOf("#908c8b");
   public static Paint colorGreen =  Paint.valueOf("#36c900");
 
+  /**
+   * Initializes array of rooms
+   */
   private void initRectArray() {
     rectArray[0] = room100;
     rectArray[1] = room101;
@@ -84,6 +85,9 @@ public class FloorChartController {
     rectArray[15] = room115;
   }
 
+  /**
+   * When the screen loads, initialize rooms array, and fill in their color based on their status.
+   */
   public void initialize() {
     initRectArray();
     System.out.println("Init floor chart!");
@@ -109,30 +113,12 @@ public class FloorChartController {
     }
   }
 
-  //this is when logo clicked, should take you back home
+  /**
+   * Brings manager back to the home screen.
+   *
+   * @param mouseEvent - Mouse click
+   */
   public void goBackHome(MouseEvent mouseEvent) {
     Main.setPane(SCREENS.MANAGERHOME.getValue());
-  }
-
-  //this supposed to shows all rooms as a list or something
-  public void viewAsList(ActionEvent actionEvent) {
-  }
-
-  public void viewActiveRequests(ActionEvent actionEvent) {
-  }
-
-  public void viewMaintenance(ActionEvent actionEvent) {
-  }
-
-  public void getInfoRoom100(MouseEvent mouseEvent) {
-  }
-
-  public void getInfo(MouseEvent mouseEvent) {
-  }
-
-  public void getInforoom103(MouseEvent mouseEvent) {
-  }
-
-  public void getInforoom101(MouseEvent mouseEvent) {
   }
 }

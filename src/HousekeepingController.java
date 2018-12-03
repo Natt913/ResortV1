@@ -9,6 +9,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Class HousekeepingController allows housekeeping employees to check requests sent from guests.
+ */
 public class HousekeepingController {
 
   public ImageView logoHome;
@@ -26,6 +29,9 @@ public class HousekeepingController {
   @FXML
   public TableView<Request> requestsTable;
 
+  /**
+   * When the screen loads, initaliaze requests table.
+   */
   public void initialize(){
     ObservableList<Request> selectedRequests = Request.getSelectedRequestList(2);
 
@@ -70,22 +76,19 @@ public class HousekeepingController {
             requestedCompletedTimeStampCol, requestEmpNotesCol);
   }
 
-  public void getInforoom101(MouseEvent mouseEvent) {
-  }
-
-  public void getInfo(MouseEvent mouseEvent) {
-  }
-
-  public void getInfoRoom100(MouseEvent mouseEvent) {
-  }
-
-  public void getInforoom103(MouseEvent mouseEvent) {
-  }
-
+  /**
+   * Logs out user. Brings them to the login page.
+   *
+   */
   public void logOut(){
     Main.setPane(SCREENS.LOGIN.getValue());
   }
 
+  /**
+   * Populate table of requests.
+   *
+   * @param actionEvent - Mouse click
+   */
   public void loadRequests(ActionEvent actionEvent) {
     ObservableList<Request> selectedRequests = Request.getSelectedRequestList(2);
 
@@ -130,6 +133,13 @@ public class HousekeepingController {
             requestedCompletedTimeStampCol, requestEmpNotesCol);
   }
 
+  /**
+   * Mark selected request in the tableView as done.
+   *
+   * TODO: IMPLEMENT THIS
+   *
+   * @param actionEvent - Mouse click
+   */
   public void markRequestDone(ActionEvent actionEvent) {
   }
 }

@@ -1,34 +1,30 @@
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+/**
+ * Class EmployeeListController shows all employees in a tableView, as well as allow managers to add or remove
+ * an employee.
+ *
+ */
 public class EmployeeListController implements Initializable {
   @FXML
   public TableView<User> employeeTable;
 
+  /**
+   * Creates columns in tableView based on user fields. Fetches each employeee via query, and displays its
+   * information.
+   */
   public void populateEmployeeList() {
     ObservableList<User> currentEmployeeList = User.getUserList(1);
     TableColumn userIDCol = new TableColumn("UserID");
@@ -67,6 +63,11 @@ public class EmployeeListController implements Initializable {
     employeeTable.getColumns().addAll(userIDCol, userNameCol, firstNameCol, lastNameCol, emailCol, empTypeTextCol);
   }
 
+  /**
+   * Removes a selected employee of the tableView from DB.
+   *
+   * @param actionEvent - Mouse click
+   */
   public void deleteUser(ActionEvent actionEvent) {
     User selectedUser;
     selectedUser = employeeTable.getSelectionModel().getSelectedItem();
@@ -84,15 +85,27 @@ public class EmployeeListController implements Initializable {
     }
   }
 
+  /**
+   * Brings manager back to its home page.
+   *
+   * @param mouseEvent - Mouse click
+   */
   public void getBackHome(MouseEvent mouseEvent) {
     Main.setPane(SCREENS.MANAGERHOME.getValue());
   }
 
+  /**
+   * Brings manager to the form utilized to create a new employee.
+   *
+   */
   public void launchNewEmployeeForm(ActionEvent actionEvent) {
     Main.setPane(SCREENS.EMPLOYEEACCOUNTFORM.getValue());
   }
 
   @Override
+  /**
+   * When the screen loads, populate table with employees.
+   */
   public void initialize(URL location, ResourceBundle resources) {
     populateEmployeeList();
   }

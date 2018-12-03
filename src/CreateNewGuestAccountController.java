@@ -10,9 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-//TODO: Make use of some of the extra fields for guests(credit card, address, etc.)
-//TODO: Better error checking for input fields
 
+/**
+ * Class CreateNewGuestAccountController allows managers to create a new guest account (whenever a guest checks in).
+ *
+ * TODO: Make use of some of the extra fields for guests(credit card, address, etc.)
+ * TODO: Better error checking for input fields
+ */
 public class CreateNewGuestAccountController {
 
   private String userFirstName;
@@ -60,6 +64,14 @@ public class CreateNewGuestAccountController {
     return firstName.getText();
   }
 
+  /**
+   * Function CreateAccount retrieves data from the textBoxes and creates a query that inserts the new guest in the
+   * user table.
+   *
+   * TODO - Query that creates user
+   *
+   * @param actionEvent - Mouse click
+   */
   public void CreateAccount(ActionEvent actionEvent) {
     int newUserID;
     userIsEmployee = 0;
@@ -68,6 +80,8 @@ public class CreateNewGuestAccountController {
     userLastName = lastName.getText();
     userEmail = emailField.getText();
     userPhone = userPhoneField.getText();
+
+    //In the event that the PIN is not an integer, catches the exception
     try {
       userPIN = Integer.parseInt(pinField.getText());
     }
@@ -76,6 +90,7 @@ public class CreateNewGuestAccountController {
     }
     userName = userFirstName.toLowerCase() + userLastName.toLowerCase().charAt(0);
 
+    //Room number must be an integer as well
     try {
       roomNumber = Integer.parseInt(roomNumField.getText());
     }
@@ -107,10 +122,11 @@ public class CreateNewGuestAccountController {
     }
   }
 
-  public void TakeHome(MouseEvent mouseEvent) {
-    Main.setPane(SCREENS.MANAGERHOME.getValue());
-  }
-
+  /**
+   * Brings manager back to its home page.
+   *
+   * @param mouseEvent - Mouse click
+   */
   public void getBackHome(MouseEvent mouseEvent) {
     Main.setPane(SCREENS.MANAGERHOME.getValue());
   }

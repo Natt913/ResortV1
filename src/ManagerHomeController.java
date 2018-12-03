@@ -88,15 +88,6 @@ public class ManagerHomeController {
     Main.setPane(SCREENS.EMPLOYEELIST.getValue());
   }
 
-  public void viewFoodServicesEmp(ActionEvent actionEvent) {
-    Main.setPane(SCREENS.FOODSERVICESVIEW.getValue());
-  }
-
-  public void viewValetEmp(ActionEvent actionEvent) {
-    Main.setPane(SCREENS.VALETVIEW.getValue());
-  }
-
-
   public void RequestIsDone(ActionEvent actionEvent) {
   }
 
@@ -170,5 +161,9 @@ public class ManagerHomeController {
       System.out.println(e.toString());
     }
 
+  }
+
+  public void viewGuests(ActionEvent actionEvent) {
+    Main.setPane(SCREENS.GUESTLIST.getValue());
   }
 }
