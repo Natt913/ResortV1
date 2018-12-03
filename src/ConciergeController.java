@@ -14,22 +14,52 @@ public class ConciergeController {
   public TextField quantityUniLandTickets;
   public TextField quantityAdvTickets;
   public TextField quantityKBBQ;
+  private String requestDetail;
 
-    @FXML
-    public void getBackHome(MouseEvent mouseEvent) {
+  @FXML
+  public void getBackHome(MouseEvent mouseEvent) {
         Main.setPane(SCREENS.GUESTHOME.getValue());
     }
 
-  public void submitReservation(ActionEvent actionEvent) {
-    //After DB method returns true
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Success!");
-    alert.setHeaderText(null);
-    alert.setContentText("Reservation successfully submitted!");
+  private void requestDetailAdd(String value) {
+    if(requestDetail.isEmpty())
+      requestDetail = value.trim();
+    else
+      requestDetail += ", \r\n" + value.trim();
+  }
 
-    alert.showAndWait();
+  public void submitRequest(ActionEvent event){
+      //
+      requestDetail = "";
 
-    Main.setPane(SCREENS.GUESTHOME.getValue());
+      if(getIntValue(quantityUniLandTickets) > 0) requestDetailAdd( "Reserve Universe Land Tickets: " + getIntValue(quantityUniLandTickets));
+      if(getIntValue(quantityAdvTickets) > 0) requestDetailAdd( "Reserve Archipelagos of Adventure Tickets: " + getIntValue(quantityAdvTickets));
+      if(getIntValue(quantityKBBQ) > 0) requestDetailAdd( "Appetizers - Zucchini Fritte: " + getIntValue(quantityKBBQ));
 
+      Request thisRequest = new Request(User.globalCurrentUser.getUserID(), SCREENS.CONCIERGE.ordinal(), requestDetail,
+            User.globalCurrentUser.getGuestRoomNumber());
+
+      //After DB method returns true
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Success!");
+      alert.setHeaderText(null);
+      alert.setContentText("Reservation successfully submitted!");
+
+      alert.showAndWait();
+
+      Main.setPane(SCREENS.GUESTHOME.getValue());
+  }
+
+  public int getIntValue(TextField textField) {
+      int value = 0;
+      if(textField.getText() != null && textField.getText().trim().length() > 0)
+      {
+          try {
+          value = Integer.parseInt(textField.getText().trim());
+          } catch (NumberFormatException ex) {
+            //
+          }
+      }
+      return value;
   }
 }

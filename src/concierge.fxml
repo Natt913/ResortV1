@@ -48,7 +48,7 @@
       <TextField fx:id="quantityUniLandTickets" layoutX="1050.0" layoutY="296.0" prefHeight="49.0" prefWidth="126.0" promptText="Quantity" />
       <TextField fx:id="quantityAdvTickets" layoutX="1050.0" layoutY="386.0" prefHeight="49.0" prefWidth="126.0" promptText="Quantity" />
       <TextField fx:id="quantityKBBQ" layoutX="1050.0" layoutY="474.0" prefHeight="49.0" prefWidth="126.0" promptText="Quantity" />
-      <Button layoutX="1028.0" layoutY="662.0" mnemonicParsing="false" onAction="#submitReservation" prefHeight="61.0" prefWidth="170.0" text="Reserve Today" />
+      <Button layoutX="1028.0" layoutY="662.0" mnemonicParsing="false" onAction="#submitRequest" prefHeight="61.0" prefWidth="170.0" text="Reserve Today" />
       <ImageView fx:id="backButton" fitHeight="94.0" fitWidth="83.0" layoutX="39.0" layoutY="682.0" onMouseClicked="#getBackHome" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@resources/back_button.png" />

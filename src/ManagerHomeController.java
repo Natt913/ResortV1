@@ -2,10 +2,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -37,7 +34,7 @@ public class ManagerHomeController {
   public TableView<Request> allRequestsTable;
 
 
-  public void initialize(){
+  public void initialize() {
     viewAllRequests();
   }
 
@@ -98,13 +95,26 @@ public class ManagerHomeController {
 
 
   public void RequestIsDone(ActionEvent actionEvent) {
+    Request selectedRequest;
+    selectedRequest = allRequestsTable.getSelectionModel().getSelectedItem();
+    if (selectedRequest != null) {
+      System.out.println("Mark request " + selectedRequest.getRequestID());
+      selectedRequest.completeRequest("no notes");
+      viewAllRequests();
+    } else {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Error");
+      alert.setHeaderText("Request not selected.");
+      alert.setContentText("Select a request and then click Mark as Done button.");
+      alert.showAndWait();
+    }
   }
 
-  public void logOut(){
+  public void logOut() {
     Main.setPane(SCREENS.LOGIN.getValue());
   }
 
-  public void createReport(){
+  public void createReport() {
     PDDocument document = new PDDocument();
     PDPage page = new PDPage();
     document.addPage(page);
@@ -113,19 +123,19 @@ public class ManagerHomeController {
 
       contentStream.setFont(PDType1Font.HELVETICA_BOLD, 24);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(100,750);
+      contentStream.moveTextPositionByAmount(100, 750);
       contentStream.showText("FGCU Resort - Manager Report");
       contentStream.endText();
 
       contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(20,700);
+      contentStream.moveTextPositionByAmount(20, 700);
       contentStream.showText("# STAFF");
       contentStream.endText();
 
       contentStream.setFont(PDType1Font.HELVETICA, 12);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(25,680);
+      contentStream.moveTextPositionByAmount(25, 680);
 
       //has to load from query
       contentStream.showText("Maintenance: 5");
@@ -133,28 +143,28 @@ public class ManagerHomeController {
 
       contentStream.setFont(PDType1Font.HELVETICA, 12);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(25,660);
+      contentStream.moveTextPositionByAmount(25, 660);
       //has to load from query
       contentStream.showText("Valet: 1");
       contentStream.endText();
 
       contentStream.setFont(PDType1Font.HELVETICA, 12);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(25,640);
+      contentStream.moveTextPositionByAmount(25, 640);
       //has to load from query
       contentStream.showText("Housekeeping: 3");
       contentStream.endText();
 
       contentStream.setFont(PDType1Font.HELVETICA, 12);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(25,620);
+      contentStream.moveTextPositionByAmount(25, 620);
       //has to load from query
       contentStream.showText("Managers: 2");
       contentStream.endText();
 
       contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
       contentStream.beginText();
-      contentStream.moveTextPositionByAmount(20,580);
+      contentStream.moveTextPositionByAmount(20, 580);
       //has to load from query
       contentStream.showText("Reserved Rooms: 10");
       contentStream.endText();
@@ -166,7 +176,7 @@ public class ManagerHomeController {
       document.close();
 
       System.out.println("Report created");
-    } catch(IOException e){
+    } catch (IOException e) {
       System.out.println(e.toString());
     }
 

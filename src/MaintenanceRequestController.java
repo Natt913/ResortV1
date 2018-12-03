@@ -14,41 +14,40 @@ import javafx.stage.Stage;
 
 public class MaintenanceRequestController {
 
-  public Tab tabMaintenanceRequests;
-  public Button buttonSubmit;
-  public TextField textOther;
-  public RadioButton ifLighting;
-  public RadioButton ifPlumbing;
-  public RadioButton ifTv;
-  public RadioButton ifInternet;
-  public RadioButton IfOther;
-  String requestDetail = "";
+    public Tab tabMaintenanceRequests;
+    public Button buttonSubmit;
+    public TextField textOther;
+    public RadioButton ifLighting;
+    public RadioButton ifPlumbing;
+    public RadioButton ifTv;
+    public RadioButton ifInternet;
+    public RadioButton IfOther;
+    String requestDetail = "";
 
-  public void getBackHome(MouseEvent mouseEvent) {
-    Main.setPane(SCREENS.GUESTHOME.getValue());
-  }
+    public void getBackHome(MouseEvent mouseEvent) {
+        Main.setPane(SCREENS.GUESTHOME.getValue());
+    }
 
-  public void submitRequest(ActionEvent actionEvent) {
+    public void submitRequest(ActionEvent actionEvent) {
+        if (ifLighting.isSelected()) requestDetail += "Category: Other, ";
+        if (ifPlumbing.isSelected()) requestDetail += "Category: Plumbing, ";
+        if (ifTv.isSelected()) requestDetail += "Category: TV, ";
+        if (ifInternet.isSelected()) requestDetail += "Category: Internet, ";
+        if (ifLighting.isSelected()) requestDetail += "Category: Lighting, ";
+        requestDetail += textOther.getText();
 
-    if (ifLighting.isSelected() == true) requestDetail += "Category: Other, ";
-    if (ifPlumbing.isSelected() == true) requestDetail += "Category: Plumbing, ";
-    if (ifTv.isSelected() == true) requestDetail += "Category: TV, ";
-    if (ifInternet.isSelected() == true) requestDetail += "Category: Internet, ";
-    if (ifLighting.isSelected() == true) requestDetail += "Category: Lighting, ";
-    requestDetail += textOther.getText();
-
-    Request thisRequest = new Request(User.globalCurrentUser.getUserID(), 3, requestDetail,
+        Request thisRequest = new Request(User.globalCurrentUser.getUserID(), 3, requestDetail,
             User.globalCurrentUser.getGuestRoomNumber());
-    thisRequest.insertRequestInDB();
+        thisRequest.insertRequestInDB();
 
-    //After DB method returns true
-    Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setTitle("Success!");
-    alert.setHeaderText(null);
-    alert.setContentText("Maintenance request successfully submitted!");
+        //After DB method returns true
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Success!");
+        alert.setHeaderText(null);
+        alert.setContentText("Maintenance request successfully submitted!");
 
-    alert.showAndWait();
+        alert.showAndWait();
 
-    Main.setPane(SCREENS.GUESTHOME.getValue());
-  }
+        Main.setPane(SCREENS.GUESTHOME.getValue());
+    }
 }
