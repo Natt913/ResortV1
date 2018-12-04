@@ -34,10 +34,11 @@ public class ConciergeController {
 
       if(getIntValue(quantityUniLandTickets) > 0) requestDetailAdd( "Reserve Universe Land Tickets: " + getIntValue(quantityUniLandTickets));
       if(getIntValue(quantityAdvTickets) > 0) requestDetailAdd( "Reserve Archipelagos of Adventure Tickets: " + getIntValue(quantityAdvTickets));
-      if(getIntValue(quantityKBBQ) > 0) requestDetailAdd( "Appetizers - Zucchini Fritte: " + getIntValue(quantityKBBQ));
+      if(getIntValue(quantityKBBQ) > 0) requestDetailAdd( "Reserve Seats at Korean BBQ: " + getIntValue(quantityKBBQ));
 
-      Request thisRequest = new Request(User.globalCurrentUser.getUserID(), SCREENS.CONCIERGE.ordinal(), requestDetail,
+      Request thisRequest = new Request(User.globalCurrentUser.getUserID(), 6, requestDetail,
             User.globalCurrentUser.getGuestRoomNumber());
+      thisRequest.insertRequestInDB();
 
       //After DB method returns true
       Alert alert = new Alert(AlertType.INFORMATION);
